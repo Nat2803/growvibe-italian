@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>Скачать QR</title></head>
+<body style="font-family:sans-serif;text-align:center;padding:40px;background:#f0f4f0">
+  <h2 style="color:#2D7D46">🇮🇹 QR-код — GrowVibe Italian</h2>
+  <canvas id="qr" style="border-radius:12px;margin:20px auto;display:block"></canvas>
+  <br>
+  <a id="dl" style="background:#2D7D46;color:white;padding:14px 32px;border-radius:24px;text-decoration:none;font-size:1.1rem;font-weight:700">⬇️ Скачать QR (PNG)</a>
+  <p style="color:#888;margin-top:16px;font-size:0.9rem">Или нажми правой кнопкой на QR → «Сохранить изображение»</p>
+
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<script>
+QRCode.toCanvas(document.getElementById('qr'),
+  'https://nat2803.github.io/growvibe-italian/landing.html',
+  { width: 400, margin: 2, color: { dark: '#000000', light: '#ffffff' }, errorCorrectionLevel: 'H' },
+  function(err, canvas) {
+    if (!err) {
+      var link = document.getElementById('dl');
+      link.href = canvas.toDataURL('image/png');
+      link.download = 'growvibe-qr.png';
+    }
+  }
+);
+</script>
+</body>
+</html>
