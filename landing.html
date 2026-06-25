@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🇮🇹 Итальянский до B1 — GrowVibe</title>
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: #0D1117;
+    color: #fff;
+    min-height: 100vh;
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #1A6B35 0%, #0D3D1E 60%, #0D1117 100%);
+    padding: 60px 20px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 60% 0%, rgba(45,125,70,0.35) 0%, transparent 70%);
+  }
+  .flag { font-size: 3.5rem; margin-bottom: 16px; }
+  .hero h1 {
+    font-size: clamp(2rem, 6vw, 3.6rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .hero h1 span { color: #5AA96A; }
+  .hero .sub {
+    font-size: clamp(1rem, 3vw, 1.25rem);
+    color: rgba(255,255,255,0.75);
+    max-width: 520px;
+    margin: 0 auto 32px;
+    line-height: 1.6;
+    position: relative;
+  }
+  .hero-badges {
+    display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;
+    margin-bottom: 40px; position: relative;
+  }
+  .badge {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 7px 16px;
+    border-radius: 20px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    backdrop-filter: blur(4px);
+  }
+
+  /* CTA */
+  .cta-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: #2D7D46; color: white;
+    padding: 16px 36px;
+    border-radius: 50px;
+    font-size: 1.1rem; font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 8px 32px rgba(45,125,70,0.45);
+    transition: all .25s;
+    position: relative;
+  }
+  .cta-btn:hover { background: #1A6B35; transform: translateY(-2px); box-shadow: 0 12px 40px rgba(45,125,70,0.55); }
+
+  /* MAIN CONTENT */
+  .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+
+  /* QR SECTION */
+  .qr-section {
+    background: #161B22;
+    border: 1px solid #30363D;
+    border-radius: 20px;
+    padding: 40px 32px;
+    text-align: center;
+    margin: -40px auto 48px;
+    max-width: 480px;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+  .qr-section h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
+  .qr-section p { font-size: 0.85rem; color: #8B949E; margin-bottom: 24px; }
+  #qrcode canvas, #qrcode img {
+    border-radius: 12px;
+    padding: 12px;
+    background: white;
+    display: block;
+    margin: 0 auto;
+  }
+  .qr-url {
+    margin-top: 16px;
+    font-size: 0.82rem;
+    color: #5AA96A;
+    word-break: break-all;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+
+  /* FEATURES */
+  section { margin-bottom: 64px; }
+  .section-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #5AA96A;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    font-weight: 800;
+    margin-bottom: 32px;
+    line-height: 1.2;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+  }
+  .feature-card {
+    background: #161B22;
+    border: 1px solid #30363D;
+    border-radius: 16px;
+    padding: 24px;
+    transition: border-color .2s;
+  }
+  .feature-card:hover { border-color: #2D7D46; }
+  .feature-icon { font-size: 2rem; margin-bottom: 12px; }
+  .feature-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+  .feature-card p { font-size: 0.87rem; color: #8B949E; line-height: 1.6; }
+
+  /* MODULES */
+  .modules-list { display: flex; flex-direction: column; gap: 12px; }
+  .module-row {
+    background: #161B22;
+    border: 1px solid #30363D;
+    border-radius: 12px;
+    padding: 18px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .module-num {
+    width: 36px; height: 36px;
+    background: #2D7D46;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .module-row h3 { font-size: 0.97rem; font-weight: 700; margin-bottom: 4px; }
+  .module-row p { font-size: 0.83rem; color: #8B949E; line-height: 1.5; }
+
+  /* PHRASES PREVIEW */
+  .phrases-wrap {
+    display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px;
+  }
+  .phrase-pill {
+    background: rgba(45,125,70,0.15);
+    border: 1px solid rgba(45,125,70,0.4);
+    color: #5AA96A;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    font-style: italic;
+  }
+
+  /* METRICS */
+  .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; }
+  .metric {
+    background: #161B22;
+    border: 1px solid #30363D;
+    border-radius: 16px;
+    padding: 24px 20px;
+    text-align: center;
+  }
+  .metric .num { font-size: 2.4rem; font-weight: 900; color: #5AA96A; }
+  .metric .lbl { font-size: 0.83rem; color: #8B949E; margin-top: 4px; line-height: 1.4; }
+
+  /* QUOTE */
+  .quote-block {
+    background: linear-gradient(135deg, #1A3A24, #0D2014);
+    border: 1px solid #2D7D46;
+    border-radius: 16px;
+    padding: 28px 32px;
+    font-size: 1.1rem;
+    font-style: italic;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 32px;
+    position: relative;
+  }
+  .quote-block::before { content: '«'; font-size: 4rem; color: #2D7D46; opacity: 0.4; position: absolute; top: 8px; left: 16px; font-style: normal; line-height: 1; }
+
+  /* BOTTOM CTA */
+  .bottom-cta {
+    background: linear-gradient(135deg, #1A6B35, #0D3D1E);
+    border-radius: 24px;
+    padding: 48px 32px;
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .bottom-cta h2 { font-size: clamp(1.4rem, 4vw, 2rem); font-weight: 800; margin-bottom: 12px; }
+  .bottom-cta p { color: rgba(255,255,255,0.75); margin-bottom: 28px; font-size: 1rem; }
+
+  /* FOOTER */
+  footer { text-align: center; padding: 24px; color: #484F58; font-size: 0.82rem; border-top: 1px solid #21262D; }
+
+  @media (max-width: 600px) {
+    .qr-section { margin: -30px 16px 40px; }
+    .hero { padding: 48px 16px 70px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="flag">🇮🇹</div>
+  <h1>Итальянский<br><span>до B1 за 6 недель</span></h1>
+  <p class="sub">Интерактивный тренажёр для русскоязычных. Говорение с первого дня — 30 минут в день.</p>
+  <div class="hero-badges">
+    <span class="badge">🎙 Голосовой ввод</span>
+    <span class="badge">🤖 ИИ-проверка</span>
+    <span class="badge">💬 72 живые фразы</span>
+    <span class="badge">🎭 6 диалогов</span>
+    <span class="badge">📱 Бесплатно</span>
+  </div>
+  <a class="cta-btn" href="https://nat2803.github.io/growvibe-italian/" target="_blank">
+    Открыть тренажёр →
+  </a>
+</div>
+
+<div class="container">
+
+  <!-- QR -->
+  <div class="qr-section">
+    <h2>Отсканируй и начни прямо сейчас</h2>
+    <p>Открывается в браузере телефона — без установки</p>
+    <div id="qrcode"></div>
+    <div class="qr-url">nat2803.github.io/growvibe-italian</div>
+  </div>
+
+  <!-- WHY -->
+  <section>
+    <div class="section-label">Почему это работает</div>
+    <div class="section-title">Не учебник — живой итальянский</div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🧠</div>
+        <h3>Интервальные повторения</h3>
+        <p>Слово появляется до того, как успело забыться. Anki-логика встроена в каждый модуль.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🗣</div>
+        <h3>Говорение с первого дня</h3>
+        <p>Произнесённое слово запоминается в 2–3 раза лучше написанного. Микрофон — главный инструмент.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚠️</div>
+        <h3>Ловушки для русскоязычных</h3>
+        <p>«Я не в настроении» → Non me la sento, не Non sono nell'umore. Разбираем кальки отдельно.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🤖</div>
+        <h3>ИИ-обратная связь</h3>
+        <p>Claude разбирает каждый ответ: ошибки, исправление, как говорят носители, и что ты сделала хорошо.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULES -->
+  <section>
+    <div class="section-label">5 модулей тренажёра</div>
+    <div class="section-title">Полная система — в одном файле</div>
+    <div class="modules-list">
+      <div class="module-row">
+        <div class="module-num">1</div>
+        <div>
+          <h3>💬 Живые выражения — 72 фразы в 7 категориях</h3>
+          <p>Флеш-карточки: русская ситуация → итальянская фраза. Категории: связки, эмоции, сленг, общение.</p>
+        </div>
+      </div>
+      <div class="module-row">
+        <div class="module-num">2</div>
+        <div>
+          <h3>🗣 Тренажёр говорения — 5 ситуаций</h3>
+          <p>Говоришь голосом → ИИ разбирает по 4 блокам: ОШИБКИ / ИСПРАВЛЕНИЕ / КАК ГОВОРЯТ / МОЛОДЕЦ.</p>
+        </div>
+      </div>
+      <div class="module-row">
+        <div class="module-num">3</div>
+        <div>
+          <h3>📝 Грамматика — 15 упражнений</h3>
+          <p>Предлоги, глаголы, кальки с русского. Мгновенная проверка с объяснением почему так, а не иначе.</p>
+        </div>
+      </div>
+      <div class="module-row">
+        <div class="module-num">4</div>
+        <div>
+          <h3>🎧 Аудирование — 3 диалога</h3>
+          <p>Читаешь → скрываешь перевод → отвечаешь на вопросы → ИИ проверяет понимание.</p>
+        </div>
+      </div>
+      <div class="module-row">
+        <div class="module-num">5</div>
+        <div>
+          <h3>🎭 Диалоги — говоришь свою роль</h3>
+          <p>6 диалогов с носителем. Ты — роль Б. Микрофон слушает, проверяет ключевые выражения, даёт обратную связь.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHRASES -->
+  <section>
+    <div class="section-label">Живой итальянский</div>
+    <div class="section-title">Фразы, которые реально используют</div>
+    <div class="quote-block">
+      Allora… insomma, diciamo che praticamente è andata bene. Però, nel senso, ci sono ancora dei dubbi. Mah, vediamo.
+    </div>
+    <div class="phrases-wrap">
+      <span class="phrase-pill">Allora…</span>
+      <span class="phrase-pill">Insomma</span>
+      <span class="phrase-pill">Tipo</span>
+      <span class="phrase-pill">Cioè</span>
+      <span class="phrase-pill">Praticamente</span>
+      <span class="phrase-pill">Diciamo</span>
+      <span class="phrase-pill">Nel senso</span>
+      <span class="phrase-pill">Vabbè</span>
+      <span class="phrase-pill">Dai!</span>
+      <span class="phrase-pill">Mah…</span>
+      <span class="phrase-pill">Boh</span>
+      <span class="phrase-pill">Magari</span>
+      <span class="phrase-pill">Meno male</span>
+      <span class="phrase-pill">Figurati</span>
+      <span class="phrase-pill">Per carità</span>
+      <span class="phrase-pill">Ci sentiamo</span>
+      <span class="phrase-pill">Non me la sento</span>
+      <span class="phrase-pill">Non ne posso più</span>
+    </div>
+  </section>
+
+  <!-- METRICS -->
+  <section>
+    <div class="section-label">За 6 недель</div>
+    <div class="section-title">Измеримый результат</div>
+    <div class="metrics">
+      <div class="metric"><div class="num">300+</div><div class="lbl">слов в активном словаре</div></div>
+      <div class="metric"><div class="num">30′</div><div class="lbl">в день — и этого достаточно</div></div>
+      <div class="metric"><div class="num">70%</div><div class="lbl">понимание подкаста B1 без субтитров</div></div>
+      <div class="metric"><div class="num">B1</div><div class="lbl">уровень к концу курса</div></div>
+    </div>
+  </section>
+
+  <!-- BOTTOM CTA -->
+  <div class="bottom-cta">
+    <h2>Начни говорить сегодня</h2>
+    <p>Бесплатно · Без установки · Открывается прямо в браузере</p>
+    <a class="cta-btn" href="https://nat2803.github.io/growvibe-italian/" target="_blank">
+      🎙 Открыть тренажёр
+    </a>
+  </div>
+
+</div>
+
+<footer>
+  © 2025 GrowVibe · Итальянский до B1 · <a href="https://nat2803.github.io/growvibe-italian/" style="color:#5AA96A">nat2803.github.io/growvibe-italian</a>
+</footer>
+
+<script>
+QRCode.toCanvas(document.createElement('canvas'), 'https://nat2803.github.io/growvibe-italian/', {
+  width: 200,
+  color: { dark: '#0D1117', light: '#FFFFFF' },
+  errorCorrectionLevel: 'H'
+}, function(err, canvas) {
+  if (!err) document.getElementById('qrcode').appendChild(canvas);
+});
+</script>
+
+</body>
+</html>
