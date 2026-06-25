@@ -1,0 +1,2165 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🇮🇹 Итальянский до B1 — GrowVibe</title>
+<style>
+  :root {
+    --green: #2D7D46;
+    --green-light: #E8F5EC;
+    --green-mid: #5AA96A;
+    --red: #C0392B;
+    --orange: #E67E22;
+    --blue: #2980B9;
+    --blue-light: #EBF5FB;
+    --gray: #7F8C8D;
+    --gray-light: #F4F6F7;
+    --dark: #1A1A2E;
+    --white: #FFFFFF;
+    --shadow: 0 2px 12px rgba(0,0,0,0.10);
+    --radius: 12px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #F0F4F0; color: var(--dark); min-height: 100vh; }
+
+  /* NAV */
+  nav { background: var(--green); padding: 0 20px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; min-height: 56px; }
+  nav .logo { color: white; font-weight: 700; font-size: 1.1rem; margin-right: 12px; white-space: nowrap; }
+  nav button { background: transparent; border: none; color: rgba(255,255,255,0.8); padding: 8px 14px; border-radius: 8px; cursor: pointer; font-size: 0.9rem; transition: all .2s; white-space: nowrap; }
+  nav button:hover, nav button.active { background: rgba(255,255,255,0.2); color: white; }
+
+  /* LAYOUT */
+  main { max-width: 860px; margin: 0 auto; padding: 24px 16px; }
+  .screen { display: none; }
+  .screen.active { display: block; }
+
+  /* CARDS */
+  .card { background: white; border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); margin-bottom: 16px; }
+  .card-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 16px; color: var(--green); }
+
+  /* BUTTONS */
+  .btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-size: 0.95rem; font-weight: 600; transition: all .2s; }
+  .btn-primary { background: var(--green); color: white; }
+  .btn-primary:hover { background: #236337; }
+  .btn-secondary { background: var(--gray-light); color: var(--dark); }
+  .btn-secondary:hover { background: #E0E0E0; }
+  .btn-outline { background: transparent; border: 2px solid var(--green); color: var(--green); }
+  .btn-outline:hover { background: var(--green-light); }
+  .btn-sm { padding: 6px 14px; font-size: 0.85rem; }
+
+  /* FLASHCARD */
+  .flashcard-wrap { perspective: 1000px; width: 100%; max-width: 520px; margin: 0 auto; height: 220px; cursor: pointer; }
+  .flashcard { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; transition: transform .5s; }
+  .flashcard.flipped { transform: rotateY(180deg); }
+  .flashcard-face { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: var(--radius); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; text-align: center; }
+  .flashcard-front { background: linear-gradient(135deg, #1A6B35, #2D7D46); color: white; }
+  .flashcard-back { background: linear-gradient(135deg, #F0F4F0, #FFFFFF); color: var(--dark); border: 2px solid var(--green-light); transform: rotateY(180deg); }
+  .flashcard-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.7; margin-bottom: 8px; }
+  .flashcard-text { font-size: 1.4rem; font-weight: 700; line-height: 1.4; }
+  .flashcard-sub { font-size: 0.9rem; margin-top: 8px; opacity: 0.75; }
+  .flashcard-comment { font-size: 0.82rem; color: var(--gray); margin-top: 8px; font-style: italic; }
+
+  /* CATEGORY TABS */
+  .tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tab { padding: 7px 14px; border-radius: 20px; border: 2px solid #DDD; background: white; cursor: pointer; font-size: 0.85rem; transition: all .2s; }
+  .tab.active { border-color: var(--green); background: var(--green-light); color: var(--green); font-weight: 600; }
+
+  /* PROGRESS */
+  .progress-bar { height: 6px; background: #DDD; border-radius: 3px; overflow: hidden; margin: 8px 0; }
+  .progress-fill { height: 100%; background: var(--green); transition: width .4s; border-radius: 3px; }
+  .counter { font-size: 0.85rem; color: var(--gray); }
+
+  /* SPEAKING */
+  textarea { width: 100%; border: 2px solid #DDD; border-radius: 8px; padding: 12px; font-size: 1rem; resize: vertical; min-height: 100px; font-family: inherit; transition: border .2s; }
+  textarea:focus { outline: none; border-color: var(--green); }
+  .situation-box { background: var(--green-light); border-left: 4px solid var(--green); padding: 16px; border-radius: 8px; margin-bottom: 16px; }
+  .situation-box .label { font-size: 0.75rem; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+  .situation-box p { font-size: 1rem; line-height: 1.5; }
+
+  /* AI RESPONSE */
+  .ai-block { margin-top: 20px; }
+  .ai-section { background: var(--gray-light); border-radius: 8px; padding: 14px; margin-bottom: 10px; }
+  .ai-section-title { font-weight: 700; font-size: 0.85rem; margin-bottom: 6px; }
+  .ai-section-title.red { color: var(--red); }
+  .ai-section-title.green { color: var(--green); }
+  .ai-section-title.blue { color: var(--blue); }
+  .ai-section-title.orange { color: var(--orange); }
+  .ai-loading { display: flex; align-items: center; gap: 10px; color: var(--gray); padding: 12px; }
+  .spinner { width: 20px; height: 20px; border: 3px solid #DDD; border-top-color: var(--green); border-radius: 50%; animation: spin .8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* GRAMMAR */
+  .question-block { margin-bottom: 24px; }
+  .question-text { font-size: 1rem; font-weight: 600; margin-bottom: 12px; line-height: 1.5; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .option { padding: 12px 16px; border: 2px solid #DDD; border-radius: 8px; cursor: pointer; transition: all .2s; font-size: 0.95rem; background: white; }
+  .option:hover:not(.disabled) { border-color: var(--green); background: var(--green-light); }
+  .option.correct { border-color: var(--green); background: var(--green-light); color: var(--green); font-weight: 600; }
+  .option.wrong { border-color: var(--red); background: #FDEDEC; color: var(--red); }
+  .option.disabled { cursor: default; }
+  .explanation { margin-top: 10px; padding: 10px 14px; background: #FFF9E6; border-left: 3px solid var(--orange); border-radius: 0 8px 8px 0; font-size: 0.88rem; line-height: 1.5; display: none; }
+  .explanation.show { display: block; }
+
+  /* LISTENING */
+  .dialog-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+  .dialog-table td { padding: 10px 12px; border-bottom: 1px solid #F0F0F0; font-size: 0.95rem; line-height: 1.5; vertical-align: top; }
+  .dialog-table td:first-child { font-weight: 500; color: var(--dark); }
+  .dialog-table td.translation { color: var(--gray); }
+  .dialog-table.hidden-it td:first-child { filter: blur(5px); user-select: none; }
+  .dialog-table.hidden-tr td.translation { display: none; }
+  .toggle-row { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+
+  /* EXPRESSIONS TABLE */
+  .expr-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin-top: 12px; }
+  .expr-table th { background: var(--green); color: white; padding: 8px 10px; text-align: left; }
+  .expr-table td { padding: 8px 10px; border-bottom: 1px solid #F0F0F0; }
+  .expr-table tr:nth-child(even) td { background: var(--gray-light); }
+
+  /* ONBOARDING */
+  .onboard { max-width: 480px; margin: 60px auto; text-align: center; }
+  .onboard h1 { font-size: 2rem; margin-bottom: 8px; }
+  .onboard p { color: var(--gray); margin-bottom: 24px; line-height: 1.6; }
+  .time-options { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 20px 0; }
+  .time-opt { padding: 12px 20px; border: 2px solid #DDD; border-radius: 8px; cursor: pointer; font-size: 0.95rem; transition: all .2s; }
+  .time-opt:hover, .time-opt.selected { border-color: var(--green); background: var(--green-light); color: var(--green); font-weight: 600; }
+
+  /* API KEY */
+  .api-input-wrap { display: flex; gap: 8px; margin-top: 16px; }
+  .api-input-wrap input { flex: 1; padding: 10px 14px; border: 2px solid #DDD; border-radius: 8px; font-size: 0.95rem; }
+  .api-input-wrap input:focus { outline: none; border-color: var(--green); }
+  .api-note { font-size: 0.8rem; color: var(--gray); margin-top: 6px; }
+
+  /* REMINDER BANNER */
+  .reminder-banner { background: linear-gradient(90deg, var(--green), #1A6B35); color: white; padding: 12px 20px; border-radius: 10px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .reminder-banner .msg { font-size: 0.95rem; }
+  .reminder-banner .time-tag { background: rgba(255,255,255,0.2); padding: 3px 10px; border-radius: 20px; font-size: 0.8rem; }
+
+  /* WEEK SCHEDULE */
+  .week-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin-top: 12px; }
+  .day-cell { background: var(--gray-light); border-radius: 8px; padding: 8px 4px; text-align: center; font-size: 0.75rem; }
+  .day-cell .day-name { font-weight: 700; color: var(--dark); margin-bottom: 4px; }
+  .day-cell .day-task { color: var(--gray); line-height: 1.3; }
+  .day-cell.today { background: var(--green-light); border: 2px solid var(--green); }
+  .day-cell.today .day-name { color: var(--green); }
+
+  /* STREAK */
+  .streak-row { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+  .streak-item { background: white; border-radius: 10px; padding: 14px 18px; text-align: center; box-shadow: var(--shadow); flex: 1; min-width: 100px; }
+  .streak-item .num { font-size: 1.8rem; font-weight: 800; color: var(--green); }
+  .streak-item .lbl { font-size: 0.75rem; color: var(--gray); margin-top: 2px; }
+
+  /* PHRASE OF THE DAY */
+  .phrase-card { background: linear-gradient(135deg, #1A6B35, #2D7D46); color: white; border-radius: var(--radius); padding: 20px 24px; margin-bottom: 16px; }
+  .phrase-card .italian { font-size: 1.3rem; font-weight: 700; margin-bottom: 4px; font-style: italic; }
+  .phrase-card .rus { font-size: 0.9rem; opacity: 0.85; }
+
+  /* UTILITIES */
+  .flex { display: flex; }
+  .gap-8 { gap: 8px; }
+  .gap-16 { gap: 16px; }
+  .mt-16 { margin-top: 16px; }
+  .mt-8 { margin-top: 8px; }
+  .text-gray { color: var(--gray); }
+  .text-sm { font-size: 0.85rem; }
+  .bold { font-weight: 700; }
+  .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 8px; }
+  .badge { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
+  .badge-green { background: var(--green-light); color: var(--green); }
+  .badge-blue { background: var(--blue-light); color: var(--blue); }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(192,57,43,0.5); }
+    50% { box-shadow: 0 0 0 10px rgba(192,57,43,0); }
+  }
+
+  @media (max-width: 600px) {
+    .week-grid { grid-template-columns: repeat(4, 1fr); }
+    .flashcard-text { font-size: 1.1rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="logo">🇮🇹 GrowVibe</span>
+  <button class="active" onclick="showScreen('home')">🏠 Главная</button>
+  <button onclick="showScreen('expressions')">💬 Выражения</button>
+  <button onclick="showScreen('speaking')">🗣 Говорение</button>
+  <button onclick="showScreen('grammar')">📝 Грамматика</button>
+  <button onclick="showScreen('listening')">🎧 Аудирование</button>
+  <button onclick="showScreen('practice')">🎯 Практика фраз</button>
+  <button onclick="showScreen('dialogpractice')">🎭 Диалоги</button>
+</nav>
+
+<main>
+
+<!-- ONBOARDING -->
+<div id="screen-onboard" class="screen active">
+  <div class="onboard">
+    <div style="font-size:3rem;margin-bottom:12px">🇮🇹</div>
+    <h1>Итальянский до B1</h1>
+    <p>30 минут в день · 6 недель · Говорение с первого дня</p>
+    <div class="card" style="text-align:left;margin-top:24px">
+      <div class="card-title">Когда тебе удобнее заниматься?</div>
+      <div class="time-options">
+        <div class="time-opt" onclick="selectTime('07:00')">☀️ Утром<br><small>07:00–09:00</small></div>
+        <div class="time-opt" onclick="selectTime('12:00')">🌤 Днём<br><small>12:00–14:00</small></div>
+        <div class="time-opt selected" onclick="selectTime('19:00')">🌙 Вечером<br><small>19:00–21:00</small></div>
+        <div class="time-opt" onclick="selectTime('custom')">⚙️ Выберу сам</div>
+      </div>
+      <div style="margin-top:16px">
+        <div class="card-title" style="font-size:1rem">Claude API ключ (для ИИ-проверки)</div>
+        <div class="api-input-wrap">
+          <input type="password" id="apiKeyInput" placeholder="sk-ant-..." />
+          <button class="btn btn-secondary btn-sm" onclick="toggleApiKey()">👁</button>
+        </div>
+        <div class="api-note">Ключ хранится только в браузере. Без него модули говорения и аудирования работают без ИИ-проверки.</div>
+      </div>
+    </div>
+    <button class="btn btn-primary" style="width:100%;padding:14px;font-size:1rem;margin-top:8px" onclick="startApp()">
+      Начать курс →
+    </button>
+  </div>
+</div>
+
+<!-- HOME -->
+<div id="screen-home" class="screen">
+  <div id="reminderBanner" class="reminder-banner" style="display:none">
+    <span class="msg" id="reminderMsg"></span>
+    <span class="time-tag" id="reminderTime"></span>
+  </div>
+
+  <div class="phrase-card" id="phraseCard">
+    <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:1px;opacity:0.7;margin-bottom:8px">Фраза дня</div>
+    <div class="italian" id="phraseItalian"></div>
+    <div class="rus" id="phraseRus"></div>
+  </div>
+
+  <div class="streak-row">
+    <div class="streak-item"><div class="num" id="streakDays">0</div><div class="lbl">Дней подряд</div></div>
+    <div class="streak-item"><div class="num" id="totalExercises">0</div><div class="lbl">Упражнений</div></div>
+    <div class="streak-item"><div class="num" id="weekNum">1</div><div class="lbl">Неделя</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📅 Расписание на неделю</div>
+    <div id="weekPhase" style="font-size:0.85rem;color:var(--gray);margin-bottom:8px"></div>
+    <div class="week-grid" id="weekGrid"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🚀 Сегодняшнее задание</div>
+    <div id="todayTask" style="font-size:1rem;line-height:1.6"></div>
+    <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap" id="todayButtons"></div>
+  </div>
+</div>
+
+<!-- EXPRESSIONS MODULE -->
+<div id="screen-expressions" class="screen">
+  <div class="section-header">
+    <h2 style="font-size:1.3rem;font-weight:700">💬 Живые выражения</h2>
+    <span class="badge badge-green" id="exprCounter">1 / 24</span>
+  </div>
+
+  <div class="tabs" id="categoryTabs"></div>
+
+  <div class="flashcard-wrap" onclick="flipCard()">
+    <div class="flashcard" id="flashcard">
+      <div class="flashcard-face flashcard-front">
+        <div class="flashcard-label">Ситуация (рус)</div>
+        <div class="flashcard-text" id="cardFront"></div>
+        <div class="flashcard-sub">Нажми — увидишь итальянский ↗</div>
+      </div>
+      <div class="flashcard-face flashcard-back">
+        <div class="flashcard-label">Итальянский</div>
+        <div class="flashcard-text" id="cardBack"></div>
+        <div class="flashcard-comment" id="cardComment"></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;justify-content:center;align-items:center;gap:16px;margin-top:20px;flex-wrap:wrap">
+    <button class="btn btn-secondary" onclick="prevCard()">← Назад</button>
+    <div style="text-align:center">
+      <div class="progress-bar" style="width:200px"><div class="progress-fill" id="cardProgress"></div></div>
+      <div class="counter" id="cardCounter"></div>
+    </div>
+    <button class="btn btn-primary" onclick="nextCard()">Далее →</button>
+  </div>
+
+  <div class="card" style="margin-top:24px">
+    <div style="font-size:0.9rem;font-weight:700;margin-bottom:12px">📚 Все выражения категории</div>
+    <div id="allExpressions"></div>
+  </div>
+</div>
+
+<!-- SPEAKING MODULE -->
+<div id="screen-speaking" class="screen">
+  <div class="section-header">
+    <h2 style="font-size:1.3rem;font-weight:700">🗣 Тренажёр говорения</h2>
+    <span class="badge badge-blue" id="speakCounter">1 / 5</span>
+  </div>
+
+  <div class="tabs" id="speakTabs"></div>
+
+  <div class="card">
+    <div class="situation-box" id="situationBox"></div>
+    <div style="font-size:0.85rem;color:var(--gray);margin-bottom:8px">⚠️ Ловушка для русскоязычных:</div>
+    <div id="trapBox" style="background:#FFF9E6;border-left:3px solid var(--orange);padding:12px;border-radius:0 8px 8px 0;font-size:0.88rem;margin-bottom:16px;line-height:1.5"></div>
+    <div style="font-size:0.9rem;font-weight:600;margin-bottom:12px">Твой ответ на итальянском:</div>
+
+    <!-- MIC BUTTON -->
+    <div style="text-align:center;margin-bottom:16px">
+      <button id="micBtn" class="btn btn-primary" onclick="toggleRecording()" style="padding:18px 32px;font-size:1.1rem;border-radius:50px;min-width:180px">
+        🎙 Говорить
+      </button>
+      <div id="micStatus" style="margin-top:10px;font-size:0.85rem;color:var(--gray);min-height:20px"></div>
+    </div>
+
+    <!-- TRANSCRIPT -->
+    <div id="transcriptWrap" style="display:none;margin-bottom:12px">
+      <div style="font-size:0.8rem;color:var(--gray);margin-bottom:4px">Распознанная речь:</div>
+      <div id="transcriptBox" style="background:var(--gray-light);border-radius:8px;padding:12px;font-size:1rem;min-height:48px;line-height:1.5;border:2px solid transparent" id="speakAnswer"></div>
+      <div style="margin-top:6px;display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn btn-sm btn-secondary" onclick="clearTranscript()">✕ Очистить</button>
+        <button class="btn btn-sm btn-secondary" onclick="editTranscript()">✏️ Редактировать</button>
+      </div>
+    </div>
+    <textarea id="speakAnswer" placeholder="Или напиши вручную..." style="display:none"></textarea>
+
+    <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+      <button class="btn btn-primary" onclick="checkSpeaking()">✅ Проверить с ИИ</button>
+      <button class="btn btn-secondary" onclick="showHint()">💡 Подсказка</button>
+      <button class="btn btn-secondary btn-sm" onclick="toggleTextInput()" id="btnTextMode">⌨️ Ввести текстом</button>
+    </div>
+    <div id="hintBox" style="display:none;margin-top:10px;padding:12px;background:var(--blue-light);border-radius:8px;font-size:0.9rem"></div>
+  </div>
+
+  <div id="speakResult" class="ai-block"></div>
+
+  <div style="display:flex;justify-content:space-between;margin-top:16px;flex-wrap:wrap;gap:8px">
+    <button class="btn btn-secondary" onclick="prevSituation()">← Назад</button>
+    <button class="btn btn-primary" onclick="nextSituation()">Следующая →</button>
+  </div>
+</div>
+
+<!-- GRAMMAR MODULE -->
+<div id="screen-grammar" class="screen">
+  <div class="section-header">
+    <h2 style="font-size:1.3rem;font-weight:700">📝 Тренажёр грамматики</h2>
+    <span class="badge badge-green" id="gramCounter"></span>
+  </div>
+
+  <div class="tabs" id="gramTabs"></div>
+  <div id="gramQuestions"></div>
+  <div style="margin-top:16px;display:flex;gap:10px">
+    <button class="btn btn-primary" onclick="resetGrammar()">🔄 Начать заново</button>
+  </div>
+</div>
+
+<!-- LISTENING MODULE -->
+<div id="screen-listening" class="screen">
+  <div class="section-header">
+    <h2 style="font-size:1.3rem;font-weight:700">🎧 Тренажёр аудирования</h2>
+    <span class="badge badge-blue" id="listenCounter">Диалог 1 / 3</span>
+  </div>
+
+  <div class="tabs" id="listenTabs"></div>
+
+  <div class="card">
+    <div style="font-size:0.85rem;font-style:italic;color:var(--gray);margin-bottom:12px">
+      💡 Сначала читай итальянский без перевода, потом открой перевод для проверки.
+    </div>
+    <div class="toggle-row">
+      <button class="btn btn-sm btn-outline" id="btnToggleTr" onclick="toggleTranslation()">Показать перевод</button>
+      <button class="btn btn-sm btn-secondary" onclick="toggleTranscript()">Скрыть диалог</button>
+    </div>
+    <div id="dialogContainer"></div>
+  </div>
+
+  <div class="card" id="listenQuestionsCard">
+    <div class="card-title">❓ Вопросы на понимание</div>
+    <div id="listenQuestions"></div>
+    <button class="btn btn-primary" style="margin-top:16px" onclick="checkListening()">✅ Проверить с ИИ</button>
+  </div>
+
+  <div id="listenResult" class="ai-block"></div>
+
+  <div class="card" id="exprCardListen">
+    <div class="card-title">🔥 Живые выражения из диалога</div>
+    <div id="listenExpressions"></div>
+  </div>
+
+  <div style="display:flex;justify-content:space-between;margin-top:16px;flex-wrap:wrap;gap:8px">
+    <button class="btn btn-secondary" onclick="prevDialog()">← Назад</button>
+    <button class="btn btn-primary" onclick="nextDialog()">Следующий диалог →</button>
+  </div>
+</div>
+
+<!-- PRACTICE MODULE -->
+<div id="screen-practice" class="screen">
+  <div class="section-header">
+    <h2 style="font-size:1.3rem;font-weight:700">🎯 Практика фраз вслух</h2>
+    <span class="badge badge-blue" id="practiceCounter">1 / 14</span>
+  </div>
+
+  <div style="font-size:0.85rem;color:var(--gray);margin-bottom:14px">
+    Читай ситуацию → нажми микрофон → скажи итальянское выражение вслух
+  </div>
+
+  <div class="tabs" id="practiceTabs"></div>
+
+  <!-- SCORE -->
+  <div style="display:flex;gap:12px;margin-bottom:16px">
+    <div class="streak-item" style="flex:1"><div class="num" id="practiceScore">0</div><div class="lbl">Правильно</div></div>
+    <div class="streak-item" style="flex:1"><div class="num" id="practiceTotal">0</div><div class="lbl">Всего попыток</div></div>
+    <div class="streak-item" style="flex:1"><div class="num" id="practiceStreak">0</div><div class="lbl">Серия ✓</div></div>
+  </div>
+
+  <!-- CARD -->
+  <div class="card" id="practiceCard">
+    <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:1px;color:var(--gray);margin-bottom:10px">Ситуация / значение</div>
+    <div id="practiceRu" style="font-size:1.25rem;font-weight:700;line-height:1.5;margin-bottom:6px"></div>
+    <div id="practiceComment" style="font-size:0.85rem;color:var(--gray);font-style:italic;margin-bottom:20px"></div>
+
+    <!-- MIC -->
+    <div style="text-align:center">
+      <button id="practiceMicBtn" class="btn btn-primary" onclick="togglePracticeRecording()" style="padding:20px 40px;font-size:1.2rem;border-radius:50px;min-width:200px">
+        🎙 Говорить
+      </button>
+      <div id="practiceMicStatus" style="margin-top:10px;font-size:0.9rem;color:var(--gray);min-height:22px"></div>
+    </div>
+
+    <!-- HEARD -->
+    <div id="practiceHeardWrap" style="display:none;margin-top:16px;padding:12px;background:var(--gray-light);border-radius:8px;font-size:0.95rem">
+      <span style="color:var(--gray);font-size:0.8rem">Я услышала: </span>
+      <span id="practiceHeard" style="font-weight:600"></span>
+    </div>
+
+    <!-- RESULT -->
+    <div id="practiceResult" style="display:none;margin-top:16px;border-radius:10px;padding:16px;text-align:center"></div>
+  </div>
+
+  <!-- ANSWER REVEAL -->
+  <div id="practiceAnswerCard" style="display:none" class="card">
+    <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:1px;color:var(--green);margin-bottom:6px">Правильное выражение</div>
+    <div id="practiceIt" style="font-size:1.4rem;font-weight:800;color:var(--dark);margin-bottom:4px"></div>
+    <div id="practiceCommentFull" style="font-size:0.88rem;color:var(--gray)"></div>
+    <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
+      <button class="btn btn-secondary" onclick="retryPractice()">🔄 Повторить</button>
+      <button class="btn btn-primary" onclick="nextPractice()">Следующая →</button>
+    </div>
+  </div>
+
+  <!-- SKIP / HINT -->
+  <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap">
+    <button class="btn btn-secondary btn-sm" onclick="showPracticeAnswer()">👁 Показать ответ</button>
+    <button class="btn btn-secondary btn-sm" onclick="nextPractice()">⏭ Пропустить</button>
+    <button class="btn btn-secondary btn-sm" onclick="shufflePractice()">🔀 Перемешать</button>
+  </div>
+
+  <!-- PROGRESS -->
+  <div style="margin-top:16px">
+    <div class="progress-bar"><div class="progress-fill" id="practiceProgress"></div></div>
+    <div class="counter" id="practiceProgressLabel" style="margin-top:4px"></div>
+  </div>
+</div>
+
+<!-- DIALOG PRACTICE SCREEN -->
+<div id="screen-dialogpractice" class="screen">
+  <div class="section-header">
+    <h2 style="font-size:1.3rem;font-weight:700">🎭 Диалоги — говори свою роль</h2>
+    <span class="badge badge-blue" id="dpCounter"></span>
+  </div>
+
+  <div style="font-size:0.85rem;color:var(--gray);margin-bottom:14px">
+    Ты играешь роль <strong>Б</strong>. Читай реплику собеседника → нажми микрофон → говори свою фразу вслух.
+  </div>
+
+  <div class="tabs" id="dpTabs"></div>
+
+  <!-- DIALOG INFO -->
+  <div class="card" id="dpInfoCard" style="margin-bottom:12px;padding:16px">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
+      <div>
+        <div id="dpTitle" style="font-weight:700;font-size:1.05rem"></div>
+        <div id="dpFocus" style="font-size:0.83rem;color:var(--gray);margin-top:2px"></div>
+      </div>
+      <div style="display:flex;gap:10px">
+        <div class="streak-item" style="min-width:64px;padding:10px"><div class="num" id="dpScore" style="font-size:1.4rem">0</div><div class="lbl">✓</div></div>
+        <div class="streak-item" style="min-width:64px;padding:10px"><div class="num" id="dpMistakes" style="font-size:1.4rem">0</div><div class="lbl">✗</div></div>
+      </div>
+    </div>
+    <div class="progress-bar" style="margin-top:12px"><div class="progress-fill" id="dpProgress"></div></div>
+  </div>
+
+  <!-- DIALOG FEED -->
+  <div id="dpFeed" style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px"></div>
+
+  <!-- ACTIVE TURN (user's line) -->
+  <div id="dpTurnCard" class="card" style="display:none;border:2px solid var(--green)">
+    <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:1px;color:var(--green);font-weight:700;margin-bottom:8px">🎤 Твоя реплика</div>
+    <div id="dpHintBox" style="background:var(--green-light);border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:0.88rem;color:var(--dark);line-height:1.5"></div>
+
+    <div style="text-align:center">
+      <button id="dpMicBtn" class="btn btn-primary" onclick="toggleDpRecording()" style="padding:18px 36px;font-size:1.1rem;border-radius:50px;min-width:180px">
+        🎙 Говорить
+      </button>
+      <div id="dpMicStatus" style="margin-top:8px;font-size:0.88rem;color:var(--gray);min-height:20px"></div>
+    </div>
+
+    <div id="dpHeardWrap" style="display:none;margin-top:14px;padding:10px 14px;background:var(--gray-light);border-radius:8px;font-size:0.95rem">
+      <span style="color:var(--gray);font-size:0.78rem">Услышала: </span>
+      <span id="dpHeard" style="font-weight:600"></span>
+    </div>
+
+    <div id="dpLineResult" style="display:none;margin-top:12px;border-radius:10px;padding:14px;text-align:center"></div>
+
+    <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn btn-secondary btn-sm" onclick="dpShowAnswer()">👁 Показать фразу</button>
+      <button class="btn btn-secondary btn-sm" onclick="dpRetry()">🔄 Повторить</button>
+    </div>
+
+    <div id="dpAnswerReveal" style="display:none;margin-top:12px;background:var(--blue-light);border-radius:8px;padding:12px">
+      <div style="font-size:0.78rem;color:var(--blue);text-transform:uppercase;font-weight:700;margin-bottom:4px">Образец</div>
+      <div id="dpAnswerText" style="font-size:1.05rem;font-weight:700"></div>
+      <div id="dpAnswerComment" style="font-size:0.82rem;color:var(--gray);margin-top:4px"></div>
+    </div>
+  </div>
+
+  <!-- FINISH -->
+  <div id="dpFinish" style="display:none" class="card" style="text-align:center">
+    <div style="text-align:center;padding:12px">
+      <div style="font-size:3rem">🎉</div>
+      <div style="font-size:1.2rem;font-weight:700;margin-top:8px">Диалог завершён!</div>
+      <div id="dpFinishStats" style="color:var(--gray);margin-top:6px"></div>
+      <div style="margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+        <button class="btn btn-secondary" onclick="restartDp()">🔄 Сначала</button>
+        <button class="btn btn-primary" onclick="nextDpDialog()">Следующий диалог →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<script>
+// ===================== DATA =====================
+
+const PHRASES = [
+  { it: "Dai, ce la fai!", ru: "Ну же, ты справишься!" },
+  { it: "Chi si ferma è perduto.", ru: "Кто останавливается — тот проигрывает." },
+  { it: "Piano piano si va lontano.", ru: "Шаг за шагом — далеко уйдёшь." },
+  { it: "Non mollare!", ru: "Не сдавайся!" },
+  { it: "Ogni giorno un po'.", ru: "Каждый день по чуть-чуть." },
+  { it: "La pratica rende perfetti.", ru: "Практика делает совершенным." },
+];
+
+const EXPRESSIONS = {
+  "Связки и паузы": [
+    { ru: "Ну… / Итак… (пауза-размышление)", it: "Allora…", comment: "Самое частое слово в начале фразы. Тянут как «ну»" },
+    { ru: "Ну вот / В общем / Короче", it: "Insomma…", comment: "Подводит итог или смягчает критику" },
+    { ru: "То есть / Ну как сказать", it: "Cioè…", comment: "Объясняет или переформулирует — как русское «то есть»" },
+    { ru: "Как бы / Типа / Ну вот", it: "Tipo…", comment: "Молодёжный заполнитель паузы, везде и всюду" },
+    { ru: "В общем-то / Практически / Ну как сказать", it: "Praticamente…", comment: "Часто не несёт смысла, просто заполняет речь" },
+    { ru: "Скажем так / Ну допустим", it: "Diciamo…", comment: "Смягчает утверждение, добавляет неопределённость" },
+    { ru: "В любом случае / Короче говоря", it: "Comunque…", comment: "Меняет тему или возвращает к главному" },
+    { ru: "Ну как бы / Вот именно", it: "Nel senso…", comment: "Молодёжное «в смысле», объясняет или уточняет" },
+    { ru: "Ладно / Хорошо / Окей", it: "Va bene / Vabbè", comment: "Vabbè — разговорное сокращение, очень частое" },
+    { ru: "Слушай / Эй (привлечь внимание)", it: "Senti…", comment: "Буквально «слышишь» — начало просьбы или темы" },
+    { ru: "Подожди / Стой", it: "Aspetta…", comment: "Пауза, чтобы собраться с мыслями" },
+    { ru: "Смотри / Видишь ли", it: "Guarda…", comment: "Привлекает внимание перед важным" },
+    { ru: "Понимаешь? / Ясно?", it: "Capisci? / Capito?", comment: "Проверка понимания, как «you know?»" },
+    { ru: "Знаешь… / Ты же знаешь", it: "Sai…", comment: "Вводное слово, заполняет паузу как «знаешь»" },
+  ],
+  "Согласие и реакция": [
+    { ru: "Точно! / Именно!", it: "Esatto!", comment: "Активное подтверждение слов собеседника" },
+    { ru: "Уже / Конечно (само собой)", it: "Già…", comment: "Задумчивое согласие: «да-да, понимаю»" },
+    { ru: "Вот именно / Как раз", it: "Appunto!", comment: "Подтверждает то, что только что сказали" },
+    { ru: "Конечно / Разумеется", it: "Certo!", comment: "Безусловное согласие" },
+    { ru: "Абсолютно / Полностью согласна", it: "Assolutamente!", comment: "Сильное согласие, часто иронично" },
+    { ru: "Серьёзно? / Не может быть!", it: "Davvero?", comment: "Искреннее удивление" },
+    { ru: "Ладно / Договорились / Давай", it: "Dai, ok", comment: "Заканчивает договорённость" },
+    { ru: "Мне всё равно / Как хочешь", it: "Come vuoi", comment: "Нейтральное безразличие, не обидное" },
+  ],
+  "Не совсем / Отказ": [
+    { ru: "Нет, ну… / Да нет же…", it: "Ma no…", comment: "Мягкое отрицание или удивление" },
+    { ru: "Да ладно! / Ты что!", it: "Ma dai!", comment: "Недоверие или лёгкий протест" },
+    { ru: "Совсем нет / Ни капли", it: "Mica…", comment: "Усиливает отрицание: «mica male» = совсем неплохо" },
+    { ru: "Наоборот / Скорее", it: "Anzi…", comment: "Поправляет или усиливает: «anzi, meglio così»" },
+    { ru: "Хотя / Но при этом", it: "Però…", comment: "Мягкое возражение или оговорка" },
+    { ru: "И всё равно / Несмотря на это", it: "Eppure…", comment: "Удивление вопреки ожиданиям" },
+    { ru: "Вот именно (с сарказмом) / Ну и вот", it: "Ecco!", comment: "Многозначно: «вот!», «ну и?», «видишь!»" },
+  ],
+  "Разговорные": [
+    { ru: "Ну давай! / Вперёд!", it: "Dai!", comment: "Многозначное слово: побуждение, удивление, сомнение" },
+    { ru: "Слава богу / Хорошо хоть", it: "Meno male", comment: "Буквально «меньше зла» — облегчение" },
+    { ru: "Да пожалуйста / Не за что", it: "Figurati", comment: "Ответ на «grazie» — непринуждённый" },
+    { ru: "Откуда мне знать? / Понятия не имею", it: "Che ne so", comment: "Разговорное, звучит естественно" },
+    { ru: "Вот бы! / Если бы!", it: "Magari", comment: "Желание + неуверенность в одном слове" },
+    { ru: "Забудь об этом / Брось", it: "Lascia perdere", comment: "Буквально «оставь потерянным»" },
+    { ru: "Давно пора / В конце концов", it: "Finalmente!", comment: "Облегчение после долгого ожидания" },
+    { ru: "Ничего страшного / Бывает", it: "Dai, non fa niente", comment: "Успокаивает после ошибки или неудачи" },
+    { ru: "Подумай только! / Представь себе!", it: "Pensa!", comment: "Удивление: «и только представь!»" },
+    { ru: "Без понятия / Хз", it: "Boh", comment: "Пожатие плечами в одном звуке" },
+  ],
+  "Эмоции": [
+    { ru: "Ты меня с ума сводишь (восторг/раздражение)", it: "Mi fa impazzire", comment: "Контекст определяет значение" },
+    { ru: "Я больше не могу / Достало", it: "Non ne posso più", comment: "Универсальная жалоба" },
+    { ru: "Мне это важно / Я дорожу этим", it: "Ci tengo", comment: "Буквально «держусь за это»" },
+    { ru: "Я в восторге / Заведён/а", it: "Sono gasato/a", comment: "Молодёжный сленг — заряженный энергией" },
+    { ru: "Я немного не в духе", it: "Sono un po' giù", comment: "Giù = вниз, метафора плохого настроения" },
+    { ru: "Меня это раздражает", it: "Mi dà fastidio", comment: "Нейтральнее чем «mi fa arrabbiare»" },
+    { ru: "Это меня не убеждает", it: "Non mi convince", comment: "Мягкий способ не согласиться" },
+    { ru: "Мне стыдно / Я смущена", it: "Mi vergogno", comment: "Стыд или смущение" },
+    { ru: "Что за ужас! / Кошмар!", it: "Che schifo!", comment: "Отвращение или неприятный сюрприз" },
+    { ru: "Это круто! / Классная штука!", it: "Che figata!", comment: "Современный сленг — восторг" },
+  ],
+  "Общение": [
+    { ru: "Ты не хочешь...? / Как насчёт...?", it: "Ti va di...?", comment: "Мягкое предложение, не «Vuoi?»" },
+    { ru: "Созвонимся / Напишем", it: "Ci sentiamo", comment: "Буквально «услышимся»" },
+    { ru: "Дай знать", it: "Fammi sapere", comment: "Устойчивая фраза" },
+    { ru: "Боже упаси / Ни в коем случае", it: "Per carità", comment: "Сильный отказ или отрицание" },
+    { ru: "Между прочим / Кстати", it: "A proposito…", comment: "Меняет тему или добавляет деталь" },
+    { ru: "В конце концов / В итоге", it: "Alla fine…", comment: "Подводит итог рассказа" },
+    { ru: "С одной стороны… с другой…", it: "Da un lato… dall'altro…", comment: "Взвешивание аргументов" },
+    { ru: "Можно сказать / Своего рода", it: "In un certo senso…", comment: "Осторожное утверждение" },
+  ],
+  "Сленг и молодёжное": [
+    { ru: "Отдохнуть / Отключиться", it: "Staccare la spina", comment: "Буквально «выдернуть вилку из розетки»" },
+    { ru: "Быть в теме / Держать руку на пульсе", it: "Essere sul pezzo", comment: "Быть в курсе текущих событий" },
+    { ru: "Зависнуть дома / Никуда не идти", it: "Stare in panciolle", comment: "Валяться на диване, отдыхать лениво" },
+    { ru: "Облажаться / Провалиться", it: "Fare una figuraccia", comment: "Буквально «сделать фигурку» — опозориться" },
+    { ru: "Тусить / Зависать", it: "Stare in giro", comment: "Буквально «ходить вокруг» — проводить время" },
+    { ru: "Это нечто / Это что-то", it: "È una roba!", comment: "Roba = штука, вещь. Восхищение или удивление" },
+    { ru: "Замутить что-то / Организовать", it: "Combinare qualcosa", comment: "Спонтанная идея встретиться или сделать что-то" },
+    { ru: "Всё супер / Отлично", it: "Tutto a posto!", comment: "Буквально «всё на месте»" },
+    { ru: "Выдохнуть / Расслабиться наконец", it: "Tirare un sospiro di sollievo", comment: "После стресса — облегчение" },
+    { ru: "Ни туда ни сюда / Серединка на половинку", it: "Così così", comment: "Ответ на «come stai?» — не очень" },
+  ],
+};
+
+const SITUATIONS = [
+  {
+    title: "Опоздание на встречу",
+    situation: "Ты опоздал на 15 минут на встречу с другом в кафе. Как ты извинишься и объяснишь?",
+    trap: "❌ «Scusa per il mio ritardo» — дословный перевод, звучит странно\n✅ Скажи: «Scusa il ritardo!» или «Sono in ritardo, scusami!»",
+    hint: "Используй: Scusa il ritardo · Dai, non è grave · Ho preso l'autobus sbagliato",
+    ideal: "Scusa il ritardo! Ho preso l'autobus sbagliato. Dai, non ci metto molto ad arrivare!",
+  },
+  {
+    title: "Предложение выйти вечером",
+    situation: "Тебе хочется пригласить друга/подругу сходить куда-нибудь вечером. Напиши натурально.",
+    trap: "❌ «Vuoi andare fuori stasera?» — грамматически верно, но звучит слишком формально\n✅ Скажи: «Ti va di uscire stasera?» — так говорят носители",
+    hint: "Используй: Ti va di · magari · dai · Che ne dici?",
+    ideal: "Dai, ti va di uscire stasera? Avevo pensato di andare in quel nuovo locale vicino al centro. Che ne dici?",
+  },
+  {
+    title: "Мягкая критика фильма",
+    situation: "Друг спросил о фильме, который тебе не понравился. Как ответить тактично?",
+    trap: "❌ «Non mi è piaciuto il film» — слишком прямолинейно\n✅ Dai, non mi ha convinto / Mah, non era il mio genere — мягче и естественнее",
+    hint: "Используй: Dai, non mi ha convinto · Mah · Non era il mio genere · però",
+    ideal: "Mah, dai, non mi ha convinto molto. La storia era interessante, però la fine non mi è piaciuta. Non era il mio genere, forse.",
+  },
+  {
+    title: "«Не в настроении»",
+    situation: "Ты устал и не хочешь никуда идти сегодня вечером. Объясни другу.",
+    trap: "❌ «Non sono nell'umore» — прямая калька с русского, так не говорят!\n✅ Правильно: «Non me la sento» или «Non sono in vena»",
+    hint: "Используй: Non me la sento · Sono un po' giù · Ho avuto una giornata pesante",
+    ideal: "Dai, non me la sento stasera. Ho avuto una giornata pesante e sono un po' giù. Ci vediamo domani?",
+  },
+  {
+    title: "Просьба к коллеге",
+    situation: "Тебе нужна помощь коллеги с задачей. Попроси вежливо, но по-живому.",
+    trap: "❌ «Puoi aiutarmi?» — нейтрально, но есть более естественные варианты\n✅ «Mi daresti una mano?» — буквально «дашь мне руку» — так говорят носители",
+    hint: "Используй: Mi daresti una mano? · Hai un attimo? · Ti chiedo solo cinque minuti",
+    ideal: "Senti, hai un attimo? Mi daresti una mano con questo documento? Ti chiedo solo cinque minuti, promesso.",
+  },
+];
+
+const GRAMMAR = {
+  "Предлоги": [
+    {
+      q: "Vado ___ Milano per lavoro.",
+      opts: ["in", "a", "da", "di"],
+      correct: 1,
+      exp: "Città → «a»: a Milano, a Roma, a Parigi. Paesi → «in»: in Italia, in Francia."
+    },
+    {
+      q: "Ho bisogno ___ riposare.",
+      opts: ["a", "per", "di", "in"],
+      correct: 2,
+      exp: "«Avere bisogno di» — устойчивая конструкция: нужда в чём-то."
+    },
+    {
+      q: "Ti va ___ uscire stasera?",
+      opts: ["di", "a", "per", "in"],
+      correct: 0,
+      exp: "«Ti va di + infinito» — предложение что-то сделать. Запомни как блок."
+    },
+    {
+      q: "Penso sempre ___ te.",
+      opts: ["di", "a", "per", "su"],
+      correct: 1,
+      exp: "«Pensare a» — думать о ком-то. Но «pensare di» = думать, что..."
+    },
+    {
+      q: "Vengo ___ casa tua domani.",
+      opts: ["in", "a", "da", "di"],
+      correct: 2,
+      exp: "«Da» + человек = к кому-то: da te, da Paolo. «A casa» = домой/дома."
+    },
+  ],
+  "Глаголы": [
+    {
+      q: "Ieri ___ (andare) al cinema con gli amici.",
+      opts: ["ho andato", "sono andato", "andavo", "andrò"],
+      correct: 1,
+      exp: "Глаголы движения с «essere»: andare, venire, arrivare, partire, tornare..."
+    },
+    {
+      q: "Mentre ___ (leggere), lui è entrato.",
+      opts: ["ho letto", "leggevo", "leggerò", "leggo"],
+      correct: 1,
+      exp: "Imperfetto — фоновое действие. Passato prossimo — прерывающее действие."
+    },
+    {
+      q: "Se potessi, ___ (viaggiare) in Italia.",
+      opts: ["viaggerò", "viaggio", "viaggierei", "ho viaggiato"],
+      correct: 2,
+      exp: "Condizionale presente — нереальное условие: se + congiuntivo + condizionale."
+    },
+    {
+      q: "Non ___ (farcela) a finire in tempo!",
+      opts: ["riesco", "faccio", "ce la faccio", "riuscirò"],
+      correct: 2,
+      exp: "«Farcela» = справляться: ce la faccio, non ce la faccio, ce l'ho fatta."
+    },
+    {
+      q: "Maria ___ (riuscire) a parlare con il direttore.",
+      opts: ["ha riuscito", "è riuscita", "riusciva", "riesce"],
+      correct: 1,
+      exp: "«Riuscire» = to manage/succeed. Спрягается с «essere»."
+    },
+  ],
+  "Кальки": [
+    {
+      q: "«Мне всё равно» — как правильно?",
+      opts: ["Mi è uguale", "Non mi importa", "È lo stesso per me", "Ugualmente"],
+      correct: 1,
+      exp: "«Non mi importa» или «Me ne frego» (грубее). «Mi è uguale» — так не говорят!"
+    },
+    {
+      q: "«Я иду домой» — как правильно?",
+      opts: ["Vado a casa mia", "Vado a la casa", "Vado a casa", "Vado nella mia casa"],
+      correct: 2,
+      exp: "«A casa» без артикля и притяжательного. Это устойчивая фраза!"
+    },
+    {
+      q: "«Как дела?» — натуральный ответ:",
+      opts: ["Io sono bene, grazie", "Sto bene, grazie!", "Sono bene", "Ho bene"],
+      correct: 1,
+      exp: "Состояние: «stare», не «essere». Я в состоянии = sto. Я существую = sono."
+    },
+    {
+      q: "«Я не в настроении идти» — как правильно?",
+      opts: ["Non sono nell'umore di andare", "Non me la sento di andare", "Non ho umore", "Non voglio andare"],
+      correct: 1,
+      exp: "«Non me la sento» — единственная естественная форма. «Nell'umore» — прямая калька."
+    },
+    {
+      q: "«Созвонимся позже» — как по-итальянски?",
+      opts: ["Ci telefoniamo dopo", "Ci sentiamo dopo", "Chiamiamo dopo", "Sentiremo dopo"],
+      correct: 1,
+      exp: "«Ci sentiamo» — универсальное прощание: созвонимся / напишем / увидимся."
+    },
+  ],
+};
+
+const DIALOGS = [
+  {
+    title: "Два коллеги в баре (A2–B1)",
+    level: "A2–B1",
+    lines: [
+      { it: "Marco: Ciao Luca! Dai, che fai qui così presto?", ru: "Марко: Привет, Лука! Ничего себе, что так рано тут?" },
+      { it: "Luca: Mah, ho una riunione alle nove, son venuto a prendere un caffè. Tu invece?", ru: "Лука: Да вот, совещание в девять, зашёл выпить кофе. А ты?" },
+      { it: "Marco: Anch'io, poi devo passare in banca prima del lavoro. Che stress.", ru: "Марко: Я тоже, потом надо заскочить в банк до работы. Вот жизнь." },
+      { it: "Luca: Lo so, lo so. Senti, stasera esci? Avevo pensato di andare da Paolo.", ru: "Лука: Знаю, знаю. Слушай, вечером выйдешь? Думал зайти к Паоло." },
+      { it: "Marco: Magari! Dipende da come va la giornata, ci sentiamo dopo.", ru: "Марко: Вот бы! Зависит от того, как пройдёт день — созвонимся." },
+      { it: "Luca: Ok dai. Barista! Un altro caffè per favore, macchiato.", ru: "Лука: Окей, договорились. Бариста! Ещё один маккьято, пожалуйста." },
+    ],
+    questions: [
+      { q: "Perché Luca è al bar così presto? — Почему Лука в баре так рано?", answer: "У него совещание в девять, зашёл выпить кофе." },
+      { q: "Cosa deve fare Marco prima del lavoro? — Что Марко должен сделать до работы?", answer: "Зайти в банк." },
+      { q: "Cosa risponde Marco all'invito di Luca? — Как Марко реагирует на приглашение?", answer: "«Magari!» — вот бы! Говорит, что зависит от дня, созвонятся." },
+    ],
+    expressions: [
+      { expr: "Dai, che fai qui?", tr: "Ничего себе, что ты тут делаешь?", note: "Dai здесь — удивление" },
+      { expr: "Mah", tr: "Ну… / Да вот…", note: "Пауза-размышление, очень частая" },
+      { expr: "Son venuto", tr: "Я пришёл", note: "Son = sono, разговорное" },
+      { expr: "Che stress", tr: "Вот жизнь / какой стресс", note: "Восклицание-жалоба" },
+      { expr: "Magari", tr: "Вот бы / если бы", note: "Желание + неуверенность" },
+      { expr: "Ci sentiamo", tr: "Созвонимся", note: "Буквально «услышимся»" },
+    ],
+  },
+  {
+    title: "Мама звонит дочери (A2–B1)",
+    level: "A2–B1",
+    lines: [
+      { it: "Mamma: Pronto? Giulia, sei tu?", ru: "Мама: Алло? Джулия, это ты?" },
+      { it: "Giulia: Sì mamma, che c'è?", ru: "Джулия: Да, мам, что случилось?" },
+      { it: "Mamma: Niente, volevo solo sentire come stai. Ti sento stanca.", ru: "Мама: Ничего, просто хотела узнать как ты. Звучишь устало." },
+      { it: "Giulia: Sono un po' giù, mamma. Ho avuto una settimana pesante.", ru: "Джулия: Я немного не в духе, мам. Тяжёлая неделя была." },
+      { it: "Mamma: Meno male che hai chiamato. Mangi almeno?", ru: "Мама: Хорошо хоть позвонила. Хоть ешь нормально?" },
+      { it: "Giulia: Dai mamma, certo che mangio. Non esagerare.", ru: "Джулия: Ну мам, конечно ем. Не преувеличивай." },
+      { it: "Mamma: Lo so, lo so. Senti, domenica vieni a pranzo? Faccio le lasagne.", ru: "Мама: Знаю, знаю. Слушай, в воскресенье придёшь на обед? Сделаю лазанью." },
+      { it: "Giulia: Magari! Sì, ci provo. Ti faccio sapere domani, ok?", ru: "Джулия: Вот бы! Да, постараюсь. Дам знать завтра, хорошо?" },
+      { it: "Mamma: Ok tesoro. Stammi bene.", ru: "Мама: Хорошо, солнышко. Береги себя." },
+      { it: "Giulia: Anche tu mamma, ciao ciao.", ru: "Джулия: И ты, мам, пока-пока." },
+    ],
+    questions: [
+      { q: "Come si sente Giulia? — Как себя чувствует Джулия?", answer: "Она немного подавлена, была тяжёлая неделя." },
+      { q: "Cosa propone la mamma per domenica? — Что мама предлагает на воскресенье?", answer: "Прийти на обед — сделает лазанью." },
+      { q: "Giulia conferma di venire? — Джулия подтверждает, что придёт?", answer: "Нет, говорит «постараюсь» и обещает написать завтра." },
+    ],
+    expressions: [
+      { expr: "Che c'è?", tr: "Что случилось?", note: "Нейтральный вопрос" },
+      { expr: "Ti sento stanca", tr: "Ты звучишь устало", note: "Буквально «слышу тебя усталой»" },
+      { expr: "Sono un po' giù", tr: "Я немного подавлена", note: "Giù = вниз, метафора настроения" },
+      { expr: "Meno male", tr: "Хорошо хоть / слава богу", note: "Облегчение" },
+      { expr: "Ci provo", tr: "Постараюсь", note: "Без гарантий" },
+      { expr: "Stammi bene", tr: "Береги себя", note: "Буквально «оставайся мне здоровой»" },
+    ],
+  },
+  {
+    title: "Коллеги после совещания (B1)",
+    level: "B1",
+    lines: [
+      { it: "Sofia: Allora, com'è andata la riunione secondo te?", ru: "София: Ну и как прошло совещание, по-твоему?" },
+      { it: "Riccardo: Mah, come al solito. Tante parole, pochi fatti.", ru: "Риккардо: Да как обычно. Много слов, мало дела." },
+      { it: "Sofia: Sì, però l'idea di Davide non era male, no?", ru: "София: Да, но идея Давиде была неплохой, нет?" },
+      { it: "Riccardo: Boh, non mi convince. Sembra più una toppa che una soluzione vera.", ru: "Риккардо: Хз, не убеждает. Больше похоже на заплатку." },
+      { it: "Sofia: Forse hai ragione. Comunque, bisogna fare qualcosa, non possiamo andare avanti così.", ru: "София: Может и прав. В любом случае, надо что-то делать." },
+      { it: "Riccardo: Concordo. Senti, hai cinque minuti dopo? Volevo parlarti di una cosa.", ru: "Риккардо: Согласен. Слушай, есть пять минут потом?" },
+      { it: "Sofia: Certo, dimmi.", ru: "София: Конечно, говори." },
+      { it: "Riccardo: No, meglio di persona. Passa da me tra un po'.", ru: "Риккардо: Нет, лучше лично. Зайди ко мне чуть попозже." },
+    ],
+    questions: [
+      { q: "Cosa pensa Riccardo della riunione? — Что Риккардо думает о совещании?", answer: "Как обычно — много слов, мало дела." },
+      { q: "Come definisce l'idea di Davide? — Как он характеризует идею Давиде?", answer: "Как заплатку, а не настоящее решение." },
+      { q: "Perché vuole parlare dopo? — Зачем хочет поговорить потом?", answer: "Хочет сказать что-то лично, не при всех." },
+    ],
+    expressions: [
+      { expr: "Come al solito", tr: "Как обычно", note: "Устойчивая фраза" },
+      { expr: "Tante parole, pochi fatti", tr: "Много слов, мало дела", note: "Готовая идиома" },
+      { expr: "Non mi convince", tr: "Меня не убеждает", note: "Мягкий способ не согласиться" },
+      { expr: "Una toppa", tr: "Заплатка", note: "Метафора: временное решение" },
+      { expr: "Concordo", tr: "Согласен", note: "Чуть формальнее чем «sono d'accordo»" },
+      { expr: "Passa da me", tr: "Зайди ко мне", note: "Буквально «пройди ко мне»" },
+    ],
+  },
+];
+
+const WEEK_SCHEDULE = [
+  { day: "Пн", task: "Anki\n5 слов", module: "expressions" },
+  { day: "Вт", task: "Подкаст\n15 мин", module: "listening" },
+  { day: "Ср", task: "Anki +\n3 слова", module: "expressions" },
+  { day: "Чт", task: "Аудио\nбез суб.", module: "listening" },
+  { day: "Пт", task: "Говорение\n1 сит.", module: "speaking" },
+  { day: "Сб", task: "10 слов\nвслух", module: "expressions" },
+  { day: "Вс", task: "Граммат.\n10 мин", module: "grammar" },
+];
+
+// ===================== STATE =====================
+let state = {
+  apiKey: '',
+  reminderTime: '19:00',
+  reminderEnabled: true,
+  streak: 0,
+  totalExercises: 0,
+  startDate: null,
+  lastActivity: null,
+  exprCat: 'Разговорные',
+  exprIdx: 0,
+  speakIdx: 0,
+  gramBlock: 'Предлоги',
+  gramAnswers: {},
+  listenIdx: 0,
+  listenAnswers: ['', '', ''],
+  listenTrVisible: false,
+  listenDialogVisible: true,
+};
+
+function saveState() {
+  localStorage.setItem('gv_state', JSON.stringify(state));
+}
+function loadState() {
+  const s = localStorage.getItem('gv_state');
+  if (s) Object.assign(state, JSON.parse(s));
+}
+
+// ===================== SCREENS =====================
+function showScreen(name) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById('screen-' + name).classList.add('active');
+  const navMap = { home:'главн', expressions:'выраж', speaking:'говор', grammar:'грамм', listening:'аудир', practice:'практик', dialogpractice:'диалог' };
+  document.querySelectorAll('nav button').forEach(b => {
+    if (navMap[name] && b.textContent.toLowerCase().includes(navMap[name])) b.classList.add('active');
+  });
+  if (name === 'expressions') renderExpressions();
+  if (name === 'speaking') renderSpeaking();
+  if (name === 'grammar') renderGrammar();
+  if (name === 'listening') renderListening();
+  if (name === 'home') renderHome();
+  if (name === 'practice') renderPractice();
+  if (name === 'dialogpractice') renderDialogPractice();
+}
+
+// ===================== ONBOARDING =====================
+let selectedTime = '19:00';
+function selectTime(t) {
+  selectedTime = t;
+  document.querySelectorAll('.time-opt').forEach(el => el.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
+  if (t === 'custom') {
+    const custom = prompt('Введи время (формат ЧЧ:ММ):', '19:00');
+    if (custom) selectedTime = custom;
+  }
+}
+function toggleApiKey() {
+  const inp = document.getElementById('apiKeyInput');
+  inp.type = inp.type === 'password' ? 'text' : 'password';
+}
+function startApp() {
+  state.apiKey = document.getElementById('apiKeyInput').value.trim();
+  state.reminderTime = selectedTime;
+  state.startDate = new Date().toISOString().split('T')[0];
+  state.lastActivity = new Date().toISOString().split('T')[0];
+  saveState();
+  document.getElementById('screen-onboard').classList.remove('active');
+  showScreen('home');
+}
+
+// ===================== HOME =====================
+function renderHome() {
+  // phrase of the day
+  const dayIdx = Math.floor(Date.now() / 86400000) % PHRASES.length;
+  document.getElementById('phraseItalian').textContent = PHRASES[dayIdx].it;
+  document.getElementById('phraseRus').textContent = PHRASES[dayIdx].ru;
+
+  // stats
+  document.getElementById('streakDays').textContent = state.streak;
+  document.getElementById('totalExercises').textContent = state.totalExercises;
+  const weekNum = state.startDate ? Math.min(6, Math.ceil((Date.now() - new Date(state.startDate)) / 604800000) + 1) : 1;
+  document.getElementById('weekNum').textContent = weekNum;
+
+  // week grid
+  const grid = document.getElementById('weekGrid');
+  const today = new Date().getDay(); // 0=Sun, 1=Mon...
+  const dayMap = [6, 0, 1, 2, 3, 4, 5]; // JS Sun=0 → index
+  grid.innerHTML = WEEK_SCHEDULE.map((d, i) => `
+    <div class="day-cell ${dayMap[today] === i ? 'today' : ''}">
+      <div class="day-name">${d.day}</div>
+      <div class="day-task">${d.task}</div>
+    </div>
+  `).join('');
+
+  // phase
+  const phase = weekNum <= 2 ? 'Фаза 1 — База и ритм' : weekNum <= 4 ? 'Фаза 2 — Понимание на слух' : 'Фаза 3 — Живая речь';
+  document.getElementById('weekPhase').textContent = phase;
+
+  // today task
+  const todaySchedule = WEEK_SCHEDULE[dayMap[today]];
+  document.getElementById('todayTask').innerHTML = `<strong>${todaySchedule.task.replace('\n', ': ')}</strong><br>Модуль: ${todaySchedule.module}`;
+  document.getElementById('todayButtons').innerHTML = `<button class="btn btn-primary" onclick="showScreen('${todaySchedule.module}')">Открыть модуль →</button>`;
+
+  // reminder
+  const banner = document.getElementById('reminderBanner');
+  const dayNames = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
+  const todayName = dayNames[today];
+  const schedule = WEEK_SCHEDULE[dayMap[today]];
+  document.getElementById('reminderMsg').textContent = `🇮🇹 Oggi: ${todaySchedule.task.replace('\n', ' — ')}`;
+  document.getElementById('reminderTime').textContent = state.reminderTime || '19:00';
+  banner.style.display = 'flex';
+}
+
+// ===================== EXPRESSIONS =====================
+function getCurrentCategory() {
+  return EXPRESSIONS[state.exprCat] || EXPRESSIONS['Разговорные'];
+}
+
+function renderExpressions() {
+  // category tabs
+  const tabs = document.getElementById('categoryTabs');
+  tabs.innerHTML = Object.keys(EXPRESSIONS).map(cat => `
+    <div class="tab ${cat === state.exprCat ? 'active' : ''}" onclick="selectCategory('${cat}')">${cat}</div>
+  `).join('');
+
+  updateCard();
+  renderAllExpressions();
+}
+
+function selectCategory(cat) {
+  state.exprCat = cat;
+  state.exprIdx = 0;
+  document.getElementById('flashcard').classList.remove('flipped');
+  renderExpressions();
+  saveState();
+}
+
+function updateCard() {
+  const cat = getCurrentCategory();
+  const card = cat[state.exprIdx];
+  document.getElementById('cardFront').textContent = card.ru;
+  document.getElementById('cardBack').textContent = card.it;
+  document.getElementById('cardComment').textContent = card.comment;
+  document.getElementById('cardCounter').textContent = `${state.exprIdx + 1} из ${cat.length}`;
+  document.getElementById('cardProgress').style.width = ((state.exprIdx + 1) / cat.length * 100) + '%';
+
+  const allCats = Object.values(EXPRESSIONS).flat();
+  const totalIdx = allCats.indexOf(card);
+  document.getElementById('exprCounter').textContent = `${totalIdx + 1} / ${allCats.length}`;
+}
+
+function flipCard() {
+  document.getElementById('flashcard').classList.toggle('flipped');
+}
+function nextCard() {
+  const cat = getCurrentCategory();
+  state.exprIdx = (state.exprIdx + 1) % cat.length;
+  document.getElementById('flashcard').classList.remove('flipped');
+  updateCard();
+  saveState();
+}
+function prevCard() {
+  const cat = getCurrentCategory();
+  state.exprIdx = (state.exprIdx - 1 + cat.length) % cat.length;
+  document.getElementById('flashcard').classList.remove('flipped');
+  updateCard();
+  saveState();
+}
+
+function renderAllExpressions() {
+  const cat = getCurrentCategory();
+  document.getElementById('allExpressions').innerHTML = cat.map((e, i) => `
+    <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid #F0F0F0;cursor:pointer" onclick="jumpToCard(${i})">
+      <div style="width:28px;height:28px;background:${i === state.exprIdx ? 'var(--green)' : 'var(--gray-light)'};border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;color:${i === state.exprIdx ? 'white' : 'var(--gray)'};flex-shrink:0">${i+1}</div>
+      <div>
+        <div style="font-weight:600;font-size:0.9rem">${e.it}</div>
+        <div style="font-size:0.83rem;color:var(--gray)">${e.ru}</div>
+      </div>
+    </div>
+  `).join('');
+}
+function jumpToCard(i) {
+  state.exprIdx = i;
+  document.getElementById('flashcard').classList.remove('flipped');
+  updateCard();
+  renderAllExpressions();
+  window.scrollTo(0, 0);
+  saveState();
+}
+
+// ===================== SPEAKING =====================
+// ===================== SPEECH RECOGNITION =====================
+let recognition = null;
+let isRecording = false;
+let fullTranscript = '';
+
+function initRecognition() {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return null;
+  const rec = new SpeechRecognition();
+  rec.lang = 'it-IT';
+  rec.continuous = true;
+  rec.interimResults = true;
+
+  rec.onresult = (e) => {
+    let interim = '';
+    let final = '';
+    for (let i = e.resultIndex; i < e.results.length; i++) {
+      if (e.results[i].isFinal) final += e.results[i][0].transcript + ' ';
+      else interim += e.results[i][0].transcript;
+    }
+    fullTranscript += final;
+    const display = (fullTranscript + interim).trim();
+    document.getElementById('transcriptBox').textContent = display;
+    document.getElementById('speakAnswer').value = display;
+    if (display) document.getElementById('transcriptWrap').style.display = 'block';
+  };
+
+  rec.onerror = (e) => {
+    stopRecording();
+    if (e.error === 'not-allowed') {
+      document.getElementById('micStatus').textContent = '❌ Нет доступа к микрофону. Разреши в браузере.';
+    } else {
+      document.getElementById('micStatus').textContent = '❌ Ошибка: ' + e.error;
+    }
+  };
+
+  rec.onend = () => {
+    if (isRecording) rec.start(); // keep alive
+  };
+
+  return rec;
+}
+
+function toggleRecording() {
+  if (isRecording) stopRecording();
+  else startRecording();
+}
+
+function startRecording() {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) {
+    document.getElementById('micStatus').textContent = '❌ Браузер не поддерживает запись. Используй Chrome.';
+    toggleTextInput(true);
+    return;
+  }
+  recognition = initRecognition();
+  isRecording = true;
+  fullTranscript = document.getElementById('speakAnswer').value || '';
+  recognition.start();
+
+  const btn = document.getElementById('micBtn');
+  btn.textContent = '⏹ Остановить';
+  btn.style.background = '#C0392B';
+  btn.style.animation = 'pulse 1.2s infinite';
+  document.getElementById('micStatus').textContent = '🔴 Запись... говори по-итальянски';
+}
+
+function stopRecording() {
+  isRecording = false;
+  if (recognition) { try { recognition.stop(); } catch(e){} recognition = null; }
+  const btn = document.getElementById('micBtn');
+  btn.textContent = '🎙 Говорить ещё';
+  btn.style.background = '';
+  btn.style.animation = '';
+  const text = document.getElementById('speakAnswer').value.trim();
+  document.getElementById('micStatus').textContent = text ? '✅ Готово — нажми «Проверить»' : 'Ничего не записано';
+}
+
+function clearTranscript() {
+  fullTranscript = '';
+  document.getElementById('transcriptBox').textContent = '';
+  document.getElementById('speakAnswer').value = '';
+  document.getElementById('transcriptWrap').style.display = 'none';
+  document.getElementById('micBtn').textContent = '🎙 Говорить';
+  document.getElementById('micStatus').textContent = '';
+}
+
+function editTranscript() {
+  const current = document.getElementById('speakAnswer').value;
+  document.getElementById('transcriptWrap').style.display = 'none';
+  const ta = document.getElementById('speakAnswer');
+  ta.style.display = 'block';
+  ta.value = current;
+  ta.focus();
+  document.getElementById('btnTextMode').textContent = '🎙 Вернуть голос';
+}
+
+function toggleTextInput(force) {
+  const ta = document.getElementById('speakAnswer');
+  const wrap = document.getElementById('transcriptWrap');
+  const btn = document.getElementById('btnTextMode');
+  if (force || ta.style.display === 'none') {
+    wrap.style.display = 'none';
+    ta.style.display = 'block';
+    ta.focus();
+    btn.textContent = '🎙 Вернуть голос';
+  } else {
+    ta.style.display = 'none';
+    if (ta.value) { wrap.style.display = 'block'; document.getElementById('transcriptBox').textContent = ta.value; }
+    btn.textContent = '⌨️ Ввести текстом';
+  }
+}
+
+function renderSpeaking() {
+  const tabs = document.getElementById('speakTabs');
+  tabs.innerHTML = SITUATIONS.map((s, i) => `
+    <div class="tab ${i === state.speakIdx ? 'active' : ''}" onclick="selectSituation(${i})">${i+1}. ${s.title}</div>
+  `).join('');
+
+  const sit = SITUATIONS[state.speakIdx];
+  document.getElementById('situationBox').innerHTML = `<div class="label">Ситуация</div><p>${sit.situation}</p>`;
+  document.getElementById('trapBox').innerHTML = sit.trap.replace(/\n/g, '<br>');
+  document.getElementById('hintBox').textContent = sit.hint;
+  document.getElementById('hintBox').style.display = 'none';
+  document.getElementById('speakAnswer').value = '';
+  document.getElementById('speakResult').innerHTML = '';
+  // reset recording state
+  if (isRecording) stopRecording();
+  fullTranscript = '';
+  document.getElementById('transcriptWrap').style.display = 'none';
+  document.getElementById('transcriptBox').textContent = '';
+  document.getElementById('speakAnswer').style.display = 'none';
+  const micBtn = document.getElementById('micBtn');
+  if (micBtn) { micBtn.textContent = '🎙 Говорить'; micBtn.style.background = ''; micBtn.style.animation = ''; }
+  const micStatus = document.getElementById('micStatus');
+  if (micStatus) micStatus.textContent = '';
+  document.getElementById('btnTextMode').textContent = '⌨️ Ввести текстом';
+  document.getElementById('speakCounter').textContent = `${state.speakIdx + 1} / ${SITUATIONS.length}`;
+}
+
+function selectSituation(i) {
+  state.speakIdx = i;
+  renderSpeaking();
+  saveState();
+}
+function nextSituation() {
+  state.speakIdx = Math.min(SITUATIONS.length - 1, state.speakIdx + 1);
+  renderSpeaking();
+  saveState();
+}
+function prevSituation() {
+  state.speakIdx = Math.max(0, state.speakIdx - 1);
+  renderSpeaking();
+  saveState();
+}
+function showHint() {
+  document.getElementById('hintBox').style.display = 'block';
+}
+
+async function checkSpeaking() {
+  const answer = document.getElementById('speakAnswer').value.trim();
+  if (!answer) { alert('Напиши свой ответ сначала!'); return; }
+
+  const sit = SITUATIONS[state.speakIdx];
+  const resultEl = document.getElementById('speakResult');
+
+  resultEl.innerHTML = `<div class="ai-loading"><div class="spinner"></div>ИИ анализирует твой ответ...</div>`;
+
+  state.totalExercises++;
+  state.lastActivity = new Date().toISOString().split('T')[0];
+  saveState();
+
+  if (!state.apiKey) {
+    resultEl.innerHTML = renderFallbackSpeaking(answer, sit);
+    return;
+  }
+
+  try {
+    const prompt = `Sei un coach madrelingua italiano che aiuta studenti russofoni.
+Situazione: "${sit.situation}"
+Risposta dello studente: "${answer}"
+Versione ideale: "${sit.ideal}"
+
+Analizza la risposta e rispondi SEMPRE in russo con questi 4 blocchi:
+
+ОШИБКИ: [перечисли грамматические ошибки и кальки с русского, или напиши "Ошибок нет!"]
+ИСПРАВЛЕНИЕ: [правильная и естественная версия ответа]
+КАК ГОВОРЯТ: [2-3 живых фразы носителей по этой теме]
+МОЛОДЕЦ: [что студент сделал хорошо]
+
+Sii specifico sugli errori tipici dei russofoni: calchi sintattici, preposizioni errate, verbi sbagliati.`;
+
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'x-api-key': state.apiKey,
+        'anthropic-version': '2023-06-01',
+        'content-type': 'application/json',
+        'anthropic-dangerous-direct-browser-access': 'true',
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-6',
+        max_tokens: 800,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+    const data = await res.json();
+    if (data.error) throw new Error(data.error.message);
+    const text = data.content[0].text;
+    resultEl.innerHTML = renderAIResponse(text, 'speaking');
+  } catch (e) {
+    resultEl.innerHTML = `<div class="card" style="border-left:3px solid var(--red)"><strong>Ошибка API:</strong> ${e.message}<br><br>${renderFallbackSpeaking(answer, sit)}</div>`;
+  }
+}
+
+function renderFallbackSpeaking(answer, sit) {
+  return `
+    <div class="card">
+      <div class="card-title">📝 Эталонный ответ (без ИИ-проверки)</div>
+      <div style="margin-bottom:12px"><strong>Твой ответ:</strong> <em>${answer}</em></div>
+      <div class="ai-section"><div class="ai-section-title green">✅ Идеальный вариант</div>${sit.ideal}</div>
+      <div class="ai-section"><div class="ai-section-title orange">💡 Подсказка</div>${sit.hint}</div>
+      <div style="margin-top:10px;font-size:0.85rem;color:var(--gray)">Добавь API ключ в настройках для полного ИИ-разбора.</div>
+    </div>
+  `;
+}
+
+function renderAIResponse(text, type) {
+  const sections = { speaking: ['ОШИБКИ', 'ИСПРАВЛЕНИЕ', 'КАК ГОВОРЯТ', 'МОЛОДЕЦ'], listening: ['ПОНЯЛ', 'ПРАВИЛЬНЫЙ ОТВЕТ', 'РАЗБОР', 'ВЫРАЖЕНИЕ ДНЯ'] };
+  const colors = { 'ОШИБКИ': 'red', 'ИСПРАВЛЕНИЕ': 'green', 'КАК ГОВОРЯТ': 'blue', 'МОЛОДЕЦ': 'green', 'ПОНЯЛ': 'green', 'ПРАВИЛЬНЫЙ ОТВЕТ': 'blue', 'РАЗБОР': 'orange', 'ВЫРАЖЕНИЕ ДНЯ': 'green' };
+  const icons = { 'ОШИБКИ': '❌', 'ИСПРАВЛЕНИЕ': '✅', 'КАК ГОВОРЯТ': '🗣', 'МОЛОДЕЦ': '🌟', 'ПОНЯЛ': '✅', 'ПРАВИЛЬНЫЙ ОТВЕТ': '📝', 'РАЗБОР': '🔍', 'ВЫРАЖЕНИЕ ДНЯ': '⭐' };
+
+  let html = '<div class="card"><div class="card-title">🤖 ИИ-разбор</div>';
+  const keys = sections[type];
+
+  let remaining = text;
+  for (let i = 0; i < keys.length; i++) {
+    const key = keys[i];
+    const nextKey = keys[i + 1];
+    let start = remaining.indexOf(key + ':');
+    if (start === -1) continue;
+    start += key.length + 1;
+    let end = nextKey ? remaining.indexOf(nextKey + ':') : remaining.length;
+    if (end === -1) end = remaining.length;
+    const content = remaining.substring(start, end).trim();
+    html += `<div class="ai-section"><div class="ai-section-title ${colors[key]}">${icons[key]} ${key}</div>${content.replace(/\n/g, '<br>')}</div>`;
+  }
+
+  if (!keys.some(k => text.includes(k + ':'))) {
+    html += `<div class="ai-section">${text.replace(/\n/g, '<br>')}</div>`;
+  }
+
+  html += '</div>';
+  return html;
+}
+
+// ===================== GRAMMAR =====================
+function renderGrammar() {
+  const tabs = document.getElementById('gramTabs');
+  tabs.innerHTML = Object.keys(GRAMMAR).map(block => `
+    <div class="tab ${block === state.gramBlock ? 'active' : ''}" onclick="selectGramBlock('${block}')">${block}</div>
+  `).join('');
+
+  const questions = GRAMMAR[state.gramBlock];
+  const answered = questions.filter((_, i) => state.gramAnswers[state.gramBlock + '_' + i] !== undefined).length;
+  document.getElementById('gramCounter').textContent = `${answered} / ${questions.length} правильно`;
+
+  document.getElementById('gramQuestions').innerHTML = questions.map((q, qi) => {
+    const answered = state.gramAnswers[state.gramBlock + '_' + qi];
+    return `
+      <div class="question-block card">
+        <div class="question-text">${qi + 1}. ${q.q}</div>
+        <div class="options" id="opts_${qi}">
+          ${q.opts.map((opt, oi) => `
+            <div class="option ${answered !== undefined ? (oi === q.correct ? 'correct' : (oi === answered && answered !== q.correct ? 'wrong' : '')) : ''} ${answered !== undefined ? 'disabled' : ''}"
+              onclick="${answered === undefined ? `selectOption(${qi}, ${oi})` : ''}">
+              ${opt}
+            </div>
+          `).join('')}
+        </div>
+        <div class="explanation ${answered !== undefined ? 'show' : ''}" id="exp_${qi}">${q.exp}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+function selectGramBlock(block) {
+  state.gramBlock = block;
+  renderGrammar();
+  saveState();
+}
+
+function selectOption(qi, oi) {
+  const q = GRAMMAR[state.gramBlock][qi];
+  const key = state.gramBlock + '_' + qi;
+  state.gramAnswers[key] = oi;
+  state.totalExercises++;
+  saveState();
+
+  document.querySelectorAll(`#opts_${qi} .option`).forEach((el, i) => {
+    el.classList.add('disabled');
+    if (i === q.correct) el.classList.add('correct');
+    else if (i === oi && oi !== q.correct) el.classList.add('wrong');
+  });
+  document.getElementById(`exp_${qi}`).classList.add('show');
+  document.getElementById('gramCounter').textContent = Object.keys(state.gramAnswers).filter(k => k.startsWith(state.gramBlock)).length + ' / ' + GRAMMAR[state.gramBlock].length + ' правильно';
+}
+
+function resetGrammar() {
+  Object.keys(state.gramAnswers).forEach(k => {
+    if (k.startsWith(state.gramBlock)) delete state.gramAnswers[k];
+  });
+  saveState();
+  renderGrammar();
+}
+
+// ===================== LISTENING =====================
+function renderListening() {
+  const tabs = document.getElementById('listenTabs');
+  tabs.innerHTML = DIALOGS.map((d, i) => `
+    <div class="tab ${i === state.listenIdx ? 'active' : ''}" onclick="selectDialog(${i})">${d.title}</div>
+  `).join('');
+
+  const dialog = DIALOGS[state.listenIdx];
+  document.getElementById('listenCounter').textContent = `Диалог ${state.listenIdx + 1} / ${DIALOGS.length}`;
+
+  // dialog table
+  const trVisible = state.listenTrVisible;
+  const dialogVisible = state.listenDialogVisible;
+  document.getElementById('btnToggleTr').textContent = trVisible ? 'Скрыть перевод' : 'Показать перевод';
+
+  document.getElementById('dialogContainer').innerHTML = dialogVisible ? `
+    <table class="dialog-table">
+      ${dialog.lines.map(line => `
+        <tr>
+          <td>${line.it}</td>
+          <td class="translation" style="${trVisible ? '' : 'display:none'}">${line.ru}</td>
+        </tr>
+      `).join('')}
+    </table>
+  ` : '<div style="padding:16px;text-align:center;color:var(--gray);font-style:italic">Диалог скрыт. Нажми «Показать диалог» чтобы прочитать.</div>';
+
+  // questions
+  document.getElementById('listenQuestions').innerHTML = dialog.questions.map((q, i) => `
+    <div style="margin-bottom:16px">
+      <div style="font-weight:600;margin-bottom:6px;font-size:0.95rem">${i+1}. ${q.q}</div>
+      <textarea style="min-height:60px" placeholder="Твой ответ..." id="listenAns_${i}" oninput="saveListen(${i}, this.value)">${state.listenAnswers[i] || ''}</textarea>
+    </div>
+  `).join('');
+  document.getElementById('listenResult').innerHTML = '';
+
+  // expressions
+  document.getElementById('listenExpressions').innerHTML = `
+    <table class="expr-table">
+      <tr><th>Выражение</th><th>Перевод</th><th>Комментарий</th></tr>
+      ${dialog.expressions.map(e => `<tr><td><strong>${e.expr}</strong></td><td>${e.tr}</td><td>${e.note}</td></tr>`).join('')}
+    </table>
+  `;
+}
+
+function saveListen(i, val) {
+  state.listenAnswers[i] = val;
+}
+
+function selectDialog(i) {
+  state.listenIdx = i;
+  state.listenAnswers = ['', '', ''];
+  state.listenTrVisible = false;
+  state.listenDialogVisible = true;
+  saveState();
+  renderListening();
+}
+function nextDialog() {
+  state.listenIdx = Math.min(DIALOGS.length - 1, state.listenIdx + 1);
+  state.listenAnswers = ['', '', ''];
+  state.listenTrVisible = false;
+  state.listenDialogVisible = true;
+  saveState();
+  renderListening();
+}
+function prevDialog() {
+  state.listenIdx = Math.max(0, state.listenIdx - 1);
+  state.listenAnswers = ['', '', ''];
+  state.listenTrVisible = false;
+  state.listenDialogVisible = true;
+  saveState();
+  renderListening();
+}
+function toggleTranslation() {
+  state.listenTrVisible = !state.listenTrVisible;
+  saveState();
+  renderListening();
+}
+function toggleTranscript() {
+  state.listenDialogVisible = !state.listenDialogVisible;
+  document.querySelector('#screen-listening .toggle-row button:last-child').textContent = state.listenDialogVisible ? 'Скрыть диалог' : 'Показать диалог';
+  renderListening();
+}
+
+async function checkListening() {
+  const dialog = DIALOGS[state.listenIdx];
+  const answers = dialog.questions.map((_, i) => {
+    const el = document.getElementById('listenAns_' + i);
+    return el ? el.value.trim() : (state.listenAnswers[i] || '');
+  });
+
+  if (answers.every(a => !a)) { alert('Ответь хотя бы на один вопрос!'); return; }
+
+  const resultEl = document.getElementById('listenResult');
+  resultEl.innerHTML = `<div class="ai-loading"><div class="spinner"></div>Проверяю ответы...</div>`;
+
+  state.totalExercises++;
+  saveState();
+
+  if (!state.apiKey) {
+    resultEl.innerHTML = `<div class="card"><div class="card-title">✅ Правильные ответы</div>${dialog.questions.map((q, i) => `<div class="ai-section"><strong>${i+1}.</strong> ${q.answer}</div>`).join('')}</div>`;
+    return;
+  }
+
+  try {
+    const qa = dialog.questions.map((q, i) => `Вопрос ${i+1}: ${q.q}\nОтвет студента: ${answers[i] || '(не ответил)'}\nПравильный ответ: ${q.answer}`).join('\n\n');
+    const prompt = `Sei un tutor di italiano. Dialogo: "${dialog.title}"\n\n${qa}\n\nRispondi SOLO in russo con:\nПОНЯЛ: [краткий анализ — правильно ли понял диалог]\nПРАВИЛЬНЫЙ ОТВЕТ: [правильные ответы на все вопросы]\nРАЗБОР: [объяснение ключевых моментов из диалога]\nВЫРАЖЕНИЕ ДНЯ: [самое полезное выражение из диалога с объяснением]`;
+
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'x-api-key': state.apiKey,
+        'anthropic-version': '2023-06-01',
+        'content-type': 'application/json',
+        'anthropic-dangerous-direct-browser-access': 'true',
+      },
+      body: JSON.stringify({ model: 'claude-sonnet-4-6', max_tokens: 600, messages: [{ role: 'user', content: prompt }] })
+    });
+    const data = await res.json();
+    if (data.error) throw new Error(data.error.message);
+    resultEl.innerHTML = renderAIResponse(data.content[0].text, 'listening');
+  } catch (e) {
+    resultEl.innerHTML = `<div class="card"><div class="card-title">Ошибка API: ${e.message}</div>${dialog.questions.map((q, i) => `<div class="ai-section"><strong>${i+1}.</strong> ${q.answer}</div>`).join('')}</div>`;
+  }
+}
+
+// ===================== PRACTICE MODULE =====================
+let practiceState = {
+  cat: 'Связки и паузы',
+  idx: 0,
+  score: 0,
+  total: 0,
+  streak: 0,
+  cards: [],
+};
+let practiceRecognition = null;
+let practiceRecording = false;
+
+function getAllPracticeCards(cat) {
+  return (EXPRESSIONS[cat] || []).map(e => ({ ...e }));
+}
+
+function renderPractice() {
+  // tabs
+  const tabs = document.getElementById('practiceTabs');
+  tabs.innerHTML = Object.keys(EXPRESSIONS).map(cat => `
+    <div class="tab ${cat === practiceState.cat ? 'active' : ''}" onclick="selectPracticeCat('${cat}')">${cat}</div>
+  `).join('');
+
+  if (!practiceState.cards.length) practiceState.cards = getAllPracticeCards(practiceState.cat);
+
+  updatePracticeCard();
+  updatePracticeScore();
+}
+
+function selectPracticeCat(cat) {
+  stopPracticeRecording();
+  practiceState.cat = cat;
+  practiceState.idx = 0;
+  practiceState.cards = getAllPracticeCards(cat);
+  practiceState.score = 0;
+  practiceState.total = 0;
+  practiceState.streak = 0;
+  renderPractice();
+}
+
+function updatePracticeCard() {
+  const cards = practiceState.cards;
+  const card = cards[practiceState.idx];
+  if (!card) return;
+
+  document.getElementById('practiceRu').textContent = card.ru;
+  document.getElementById('practiceComment').textContent = card.comment;
+  document.getElementById('practiceIt').textContent = card.it;
+  document.getElementById('practiceCommentFull').textContent = card.comment;
+  document.getElementById('practiceCounter').textContent = `${practiceState.idx + 1} / ${cards.length}`;
+  document.getElementById('practiceResult').style.display = 'none';
+  document.getElementById('practiceAnswerCard').style.display = 'none';
+  document.getElementById('practiceHeardWrap').style.display = 'none';
+  document.getElementById('practiceHeard').textContent = '';
+
+  const btn = document.getElementById('practiceMicBtn');
+  btn.textContent = '🎙 Говорить';
+  btn.style.background = '';
+  btn.style.animation = '';
+  document.getElementById('practiceMicStatus').textContent = '';
+
+  const pct = ((practiceState.idx) / cards.length) * 100;
+  document.getElementById('practiceProgress').style.width = pct + '%';
+  document.getElementById('practiceProgressLabel').textContent = `${practiceState.idx} из ${cards.length} пройдено`;
+}
+
+function updatePracticeScore() {
+  document.getElementById('practiceScore').textContent = practiceState.score;
+  document.getElementById('practiceTotal').textContent = practiceState.total;
+  document.getElementById('practiceStreak').textContent = practiceState.streak;
+}
+
+function togglePracticeRecording() {
+  if (practiceRecording) stopPracticeRecording();
+  else startPracticeRecording();
+}
+
+function startPracticeRecording() {
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SR) {
+    document.getElementById('practiceMicStatus').textContent = '❌ Используй Chrome для записи голоса';
+    return;
+  }
+
+  practiceRecognition = new SR();
+  practiceRecognition.lang = 'it-IT';
+  practiceRecognition.continuous = false;
+  practiceRecognition.interimResults = true;
+
+  let finalText = '';
+
+  practiceRecognition.onresult = (e) => {
+    let interim = '';
+    finalText = '';
+    for (let i = 0; i < e.results.length; i++) {
+      if (e.results[i].isFinal) finalText += e.results[i][0].transcript;
+      else interim += e.results[i][0].transcript;
+    }
+    document.getElementById('practiceMicStatus').textContent = '🔴 ' + (finalText || interim);
+  };
+
+  practiceRecognition.onend = () => {
+    practiceRecording = false;
+    const btn = document.getElementById('practiceMicBtn');
+    btn.textContent = '🎙 Говорить ещё';
+    btn.style.background = '';
+    btn.style.animation = '';
+    if (finalText.trim()) checkPracticeAnswer(finalText.trim());
+  };
+
+  practiceRecognition.onerror = (e) => {
+    practiceRecording = false;
+    document.getElementById('practiceMicStatus').textContent = e.error === 'not-allowed'
+      ? '❌ Разреши доступ к микрофону' : '❌ Ошибка: ' + e.error;
+    const btn = document.getElementById('practiceMicBtn');
+    btn.textContent = '🎙 Говорить';
+    btn.style.background = '';
+    btn.style.animation = '';
+  };
+
+  practiceRecording = true;
+  practiceRecognition.start();
+
+  const btn = document.getElementById('practiceMicBtn');
+  btn.textContent = '⏹ Слушаю…';
+  btn.style.background = '#C0392B';
+  btn.style.animation = 'pulse 1.2s infinite';
+  document.getElementById('practiceMicStatus').textContent = '🔴 Говори выражение по-итальянски…';
+}
+
+function stopPracticeRecording() {
+  practiceRecording = false;
+  if (practiceRecognition) { try { practiceRecognition.stop(); } catch(e){} practiceRecognition = null; }
+  const btn = document.getElementById('practiceMicBtn');
+  if (btn) { btn.textContent = '🎙 Говорить'; btn.style.background = ''; btn.style.animation = ''; }
+}
+
+function normalizeText(t) {
+  return t.toLowerCase()
+    .replace(/[àá]/g, 'a').replace(/[èé]/g, 'e').replace(/[ìí]/g, 'i')
+    .replace(/[òó]/g, 'o').replace(/[ùú]/g, 'u')
+    .replace(/[^a-z\s]/g, '').trim();
+}
+
+function checkPracticeAnswer(heard) {
+  const card = practiceState.cards[practiceState.idx];
+  document.getElementById('practiceHeardWrap').style.display = 'block';
+  document.getElementById('practiceHeard').textContent = heard;
+
+  // Build list of key words from the target (skip short stop words)
+  const targetNorm = normalizeText(card.it);
+  const heardNorm = normalizeText(heard);
+  const targetWords = targetNorm.split(/\s+/).filter(w => w.length > 2);
+  const matchedWords = targetWords.filter(w => heardNorm.includes(w));
+  const ratio = targetWords.length ? matchedWords.length / targetWords.length : 0;
+  const isCorrect = ratio >= 0.5 || heardNorm.includes(targetNorm) || targetNorm.includes(heardNorm);
+
+  practiceState.total++;
+
+  const resultEl = document.getElementById('practiceResult');
+  resultEl.style.display = 'block';
+
+  if (isCorrect) {
+    practiceState.score++;
+    practiceState.streak++;
+    resultEl.style.background = 'var(--green-light)';
+    resultEl.style.border = '2px solid var(--green)';
+    resultEl.innerHTML = `
+      <div style="font-size:2rem">✅</div>
+      <div style="font-weight:700;color:var(--green);font-size:1.1rem;margin-top:4px">Отлично!</div>
+      <div style="color:var(--gray);font-size:0.9rem;margin-top:4px">${practiceState.streak > 1 ? `🔥 Серия: ${practiceState.streak}` : 'Так держать!'}</div>
+      <button class="btn btn-primary" style="margin-top:14px" onclick="nextPractice()">Следующая →</button>
+    `;
+  } else {
+    practiceState.streak = 0;
+    resultEl.style.background = '#FDEDEC';
+    resultEl.style.border = '2px solid var(--red)';
+    resultEl.innerHTML = `
+      <div style="font-size:2rem">❌</div>
+      <div style="font-weight:700;color:var(--red);font-size:1rem;margin-top:4px">Не совсем…</div>
+      <div style="color:var(--gray);font-size:0.85rem;margin-top:4px">Ты сказала: <em>${heard}</em></div>
+      <div style="margin-top:12px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+        <button class="btn btn-secondary btn-sm" onclick="retryPractice()">🔄 Ещё раз</button>
+        <button class="btn btn-primary btn-sm" onclick="showPracticeAnswer()">👁 Показать ответ</button>
+      </div>
+    `;
+  }
+
+  updatePracticeScore();
+  document.getElementById('practiceMicStatus').textContent = '';
+}
+
+function showPracticeAnswer() {
+  document.getElementById('practiceAnswerCard').style.display = 'block';
+  document.getElementById('practiceResult').style.display = 'none';
+}
+
+function retryPractice() {
+  document.getElementById('practiceResult').style.display = 'none';
+  document.getElementById('practiceAnswerCard').style.display = 'none';
+  document.getElementById('practiceHeardWrap').style.display = 'none';
+  const btn = document.getElementById('practiceMicBtn');
+  btn.textContent = '🎙 Говорить';
+  btn.style.background = '';
+  btn.style.animation = '';
+  document.getElementById('practiceMicStatus').textContent = '';
+}
+
+function nextPractice() {
+  stopPracticeRecording();
+  const cards = practiceState.cards;
+  if (practiceState.idx < cards.length - 1) {
+    practiceState.idx++;
+    updatePracticeCard();
+  } else {
+    // finished all cards
+    document.getElementById('practiceCard').innerHTML = `
+      <div style="text-align:center;padding:20px">
+        <div style="font-size:3rem">🎉</div>
+        <div style="font-size:1.3rem;font-weight:700;margin-top:12px">Категория пройдена!</div>
+        <div style="color:var(--gray);margin-top:8px">Правильно: ${practiceState.score} из ${practiceState.total}</div>
+        <div style="margin-top:20px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+          <button class="btn btn-secondary" onclick="selectPracticeCat(practiceState.cat)">🔄 Заново</button>
+          <button class="btn btn-primary" onclick="shufflePractice()">🔀 Перемешать всё</button>
+        </div>
+      </div>
+    `;
+    document.getElementById('practiceAnswerCard').style.display = 'none';
+  }
+}
+
+function shufflePractice() {
+  stopPracticeRecording();
+  const all = Object.values(EXPRESSIONS).flat();
+  practiceState.cards = all.sort(() => Math.random() - 0.5);
+  practiceState.idx = 0;
+  practiceState.score = 0;
+  practiceState.total = 0;
+  practiceState.streak = 0;
+  practiceState.cat = '🔀 Всё вперемешку';
+  // rebuild card HTML in case it was replaced by the finish screen
+  document.getElementById('practiceCard').innerHTML = `
+    <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:1px;color:var(--gray);margin-bottom:10px">Ситуация / значение</div>
+    <div id="practiceRu" style="font-size:1.25rem;font-weight:700;line-height:1.5;margin-bottom:6px"></div>
+    <div id="practiceComment" style="font-size:0.85rem;color:var(--gray);font-style:italic;margin-bottom:20px"></div>
+    <div style="text-align:center">
+      <button id="practiceMicBtn" class="btn btn-primary" onclick="togglePracticeRecording()" style="padding:20px 40px;font-size:1.2rem;border-radius:50px;min-width:200px">🎙 Говорить</button>
+      <div id="practiceMicStatus" style="margin-top:10px;font-size:0.9rem;color:var(--gray);min-height:22px"></div>
+    </div>
+    <div id="practiceHeardWrap" style="display:none;margin-top:16px;padding:12px;background:var(--gray-light);border-radius:8px;font-size:0.95rem">
+      <span style="color:var(--gray);font-size:0.8rem">Я услышала: </span><span id="practiceHeard" style="font-weight:600"></span>
+    </div>
+    <div id="practiceResult" style="display:none;margin-top:16px;border-radius:10px;padding:16px;text-align:center"></div>
+  `;
+  renderPractice();
+}
+
+// ===================== DIALOG PRACTICE DATA =====================
+// Each dialogue: user plays role B. Lines: { speaker, text, isUser, hint, keys, comment }
+// keys: array of strings — at least one must appear in recognised speech
+const DIALOG_PRACTICE = [
+  {
+    title: "В кафе утром",
+    focus: "Связки: allora, dai, tipo, insomma, comunque",
+    lines: [
+      { speaker: "А", text: "Ciao! Allora, come stai? Hai l'aria stanca.", isUser: false },
+      { speaker: "Б", text: "Sì, insomma… ho dormito pochissimo. Tipo, tre ore.", isUser: true,
+        hint: "Согласись, что устала. Используй «insomma» (ну в общем) и «tipo» (типа/где-то).",
+        keys: ["insomma","tipo","dormito","ore","poco"], comment: "Insomma + tipo — классика разговорной речи" },
+      { speaker: "А", text: "Dai! Perché? Cosa è successo?", isUser: false },
+      { speaker: "Б", text: "Mah, niente di grave. Comunque, ho finito tardi un progetto.", isUser: true,
+        hint: "Скажи «mah» (ну...), потом «comunque» (в любом случае) — закончила проект поздно.",
+        keys: ["mah","comunque","progetto","finito","tardi"], comment: "Mah + comunque — типичная связка" },
+      { speaker: "А", text: "Capito. Vuoi un caffè doppio allora?", isUser: false },
+      { speaker: "Б", text: "Sì, dai! Allora prendo anche un cornetto. Ho una fame!", isUser: true,
+        hint: "Согласись с энтузиазмом: «Sì, dai!», потом «allora» и скажи что ещё возьмёшь.",
+        keys: ["dai","allora","cornetto","fame","prendo"], comment: "Dai как «ну давай!» — радостное согласие" },
+    ],
+  },
+  {
+    title: "Телефонный разговор",
+    focus: "Senti, aspetta, vabbè, ci sentiamo, fammi sapere",
+    lines: [
+      { speaker: "А", text: "Pronto? Sei libera stasera? Pensavo di uscire.", isUser: false },
+      { speaker: "Б", text: "Senti, non lo so ancora… aspetta, devo controllare una cosa.", isUser: true,
+        hint: "Скажи «senti» (слушай), потом «aspetta» (подожди) — нужно кое-что проверить.",
+        keys: ["senti","aspetta","controllare","cosa","so"], comment: "Senti + aspetta — естественная пауза в разговоре" },
+      { speaker: "А", text: "Ok, nessun problema. Fammi sapere quando puoi.", isUser: false },
+      { speaker: "Б", text: "Certo, ti faccio sapere entro un'ora. Vabbè, ci sentiamo dopo.", isUser: true,
+        hint: "Подтверди: «ti faccio sapere» (дам знать) + «vabbè» (ладно) + «ci sentiamo dopo».",
+        keys: ["faccio sapere","vabbè","ci sentiamo","dopo","ora"], comment: "Vabbè = va bene в разговорной речи" },
+      { speaker: "А", text: "Perfetto! A dopo allora.", isUser: false },
+      { speaker: "Б", text: "Sì dai, a dopo! Un bacio.", isUser: true,
+        hint: "Попрощайся тепло: «sì dai» + «a dopo» + «un bacio» или «ciao ciao».",
+        keys: ["dai","dopo","bacio","ciao","perfetto"], comment: "Un bacio — тёплое итальянское прощание" },
+    ],
+  },
+  {
+    title: "Коллеги в офисе",
+    focus: "Praticamente, diciamo, nel senso, però, appunto",
+    lines: [
+      { speaker: "А", text: "Allora, come è andata la presentazione?", isUser: false },
+      { speaker: "Б", text: "Praticamente bene, diciamo… però il cliente aveva qualche dubbio.", isUser: true,
+        hint: "«Praticamente bene» (в целом хорошо) + «diciamo» (скажем так) + «però» (но).",
+        keys: ["praticamente","diciamo","però","cliente","bene"], comment: "Praticamente + diciamo смягчают оценку" },
+      { speaker: "А", text: "Nel senso che non era convinto della proposta?", isUser: false },
+      { speaker: "Б", text: "Sì, appunto. Nel senso, gli piaceva l'idea ma i tempi gli sembravano lunghi.", isUser: true,
+        hint: "«Sì, appunto» (именно!) + «nel senso» (в смысле) — объясни проблему.",
+        keys: ["appunto","nel senso","piaceva","tempi","idea"], comment: "Appunto подтверждает слова собеседника" },
+      { speaker: "А", text: "Capito. E quindi cosa facciamo adesso?", isUser: false },
+      { speaker: "Б", text: "Boh, diciamo che proviamo a rivedere i tempi. Però prima parliamoci tra noi.", isUser: true,
+        hint: "«Boh» (хз) + «diciamo che» (скажем так) + «però prima» (но сначала).",
+        keys: ["boh","diciamo","però","tempi","prima"], comment: "Boh + diciamo — типичная офисная неопределённость" },
+    ],
+  },
+  {
+    title: "Планируем вечер",
+    focus: "Ti va di, magari, dai, che ne dici, ci sentiamo",
+    lines: [
+      { speaker: "А", text: "Ehi, ti va di fare qualcosa stasera? Non ho voglia di stare in casa.", isUser: false },
+      { speaker: "Б", text: "Magari! Ti va di andare a mangiare una pizza? Conosco un posto carino.", isUser: true,
+        hint: "«Magari!» (вот бы!) как реакция + «ti va di» для предложения пиццы.",
+        keys: ["magari","ti va","pizza","posto","mangiare"], comment: "Magari — восторженное согласие с предложением" },
+      { speaker: "А", text: "Ottima idea! Alle otto ti va bene?", isUser: false },
+      { speaker: "Б", text: "Sì, dai, alle otto va benissimo. Ci troviamo lì?", isUser: true,
+        hint: "«Sì, dai» (да, давай!) + подтверди время + «ci troviamo lì?» (встретимся там?).",
+        keys: ["dai","otto","benissimo","troviamo","bene"], comment: "Ci troviamo — встретимся (возвратная форма)" },
+      { speaker: "А", text: "Perfetto! E dopo, che ne dici di andare a prendere qualcosa?", isUser: false },
+      { speaker: "Б", text: "Che ne so, vediamo come ci sentiamo dopo cena. Comunque sì, magari!", isUser: true,
+        hint: "«Che ne so» (откуда мне знать) + «vediamo» + «magari» — неопределённость но позитивная.",
+        keys: ["che ne so","vediamo","magari","dopo","comunque"], comment: "Che ne so — очень живое выражение неопределённости" },
+    ],
+  },
+  {
+    title: "Встреча после долгого времени",
+    focus: "Davvero, già, meno male, pensa, non ci posso credere",
+    lines: [
+      { speaker: "А", text: "Ma dai, quanto tempo! Come stai? Ti vedo benissimo!", isUser: false },
+      { speaker: "Б", text: "Meno male che ci siamo incontrate! Anch'io ti vedo benissimo, davvero!", isUser: true,
+        hint: "«Meno male» (хорошо хоть/слава богу) + «davvero» (правда/серьёзно).",
+        keys: ["meno male","davvero","incontrate","vedo","anch"], comment: "Meno male выражает облегчение и радость" },
+      { speaker: "А", text: "Sai, ho cambiato lavoro! Lavoro in una startup adesso.", isUser: false },
+      { speaker: "Б", text: "Davvero?! Pensa! Non ci posso credere, che bello per te!", isUser: true,
+        hint: "«Davvero?!» (серьёзно?!) + «Pensa!» (подумать только!) + «non ci posso credere».",
+        keys: ["davvero","pensa","credere","bello","startup"], comment: "Pensa! — восклицание удивления, очень живое" },
+      { speaker: "А", text: "Sì! E tu? Cosa c'è di nuovo?", isUser: false },
+      { speaker: "Б", text: "Mah, insomma… già, tantissime cose! Ma raccontami ancora di te, dai.", isUser: true,
+        hint: "«Mah, insomma» (ну в общем) + «già» (уже да / само собой) + «raccontami, dai».",
+        keys: ["mah","insomma","già","raccontami","dai"], comment: "Già как задумчивое «да-да» или «само собой»" },
+    ],
+  },
+  {
+    title: "Когда что-то пошло не так",
+    focus: "Dai non fa niente, però, eppure, figurati, per carità",
+    lines: [
+      { speaker: "А", text: "Scusa tantissimo, sono arrivata in ritardo! Il traffico era assurdo.", isUser: false },
+      { speaker: "Б", text: "Dai, non fa niente! Figurati, è successo anche a me mille volte.", isUser: true,
+        hint: "«Dai, non fa niente» (ничего страшного) + «figurati» (да пожалуйста, не переживай).",
+        keys: ["dai","non fa niente","figurati","successo","volte"], comment: "Figurati после scusa — великодушный ответ" },
+      { speaker: "А", text: "Sei troppo gentile. Però mi sentivo malissimo ad aspettarti.", isUser: false },
+      { speaker: "Б", text: "Per carità, non ci pensare! Eppure ti ho scritto che ero qui tranquilla.", isUser: true,
+        hint: "«Per carità» (да ладно, боже упаси) + «non ci pensare» + «eppure» (хотя/и всё равно).",
+        keys: ["per carità","eppure","scritto","tranquilla","pensare"], comment: "Per carità — сильное «да ладно тебе!»" },
+      { speaker: "А", text: "Lo so, lo so. Allora, ordiniamo?", isUser: false },
+      { speaker: "Б", text: "Sì, dai! Finalmente! Ho una fame da lupo, non ne posso più.", isUser: true,
+        hint: "«Sì, dai! Finalmente!» + «ho una fame da lupo» + «non ne posso più» (больше не могу).",
+        keys: ["dai","finalmente","fame","lupo","non ne posso"], comment: "Non ne posso più — финальная жалоба с юмором" },
+    ],
+  },
+];
+
+// ===================== DIALOG PRACTICE LOGIC =====================
+let dpState = {
+  dialogIdx: 0,
+  lineIdx: 0,
+  score: 0,
+  mistakes: 0,
+  completed: [],
+};
+let dpRecognition = null;
+let dpRecording = false;
+
+function renderDialogPractice() {
+  // tabs
+  document.getElementById('dpTabs').innerHTML = DIALOG_PRACTICE.map((d, i) => `
+    <div class="tab ${i === dpState.dialogIdx ? 'active' : ''}" onclick="selectDpDialog(${i})">${i+1}. ${d.title}</div>
+  `).join('');
+
+  const dlg = DIALOG_PRACTICE[dpState.dialogIdx];
+  document.getElementById('dpTitle').textContent = dlg.title;
+  document.getElementById('dpFocus').textContent = '💬 Фокус: ' + dlg.focus;
+  document.getElementById('dpCounter').textContent = `Диалог ${dpState.dialogIdx + 1} / ${DIALOG_PRACTICE.length}`;
+  document.getElementById('dpScore').textContent = dpState.score;
+  document.getElementById('dpMistakes').textContent = dpState.mistakes;
+  document.getElementById('dpFinish').style.display = 'none';
+
+  renderDpFeed();
+  updateDpProgress();
+}
+
+function selectDpDialog(i) {
+  stopDpRecording();
+  dpState.dialogIdx = i;
+  dpState.lineIdx = 0;
+  dpState.score = 0;
+  dpState.mistakes = 0;
+  renderDialogPractice();
+}
+
+function restartDp() {
+  dpState.lineIdx = 0;
+  dpState.score = 0;
+  dpState.mistakes = 0;
+  document.getElementById('dpFinish').style.display = 'none';
+  renderDialogPractice();
+}
+
+function nextDpDialog() {
+  const next = (dpState.dialogIdx + 1) % DIALOG_PRACTICE.length;
+  selectDpDialog(next);
+}
+
+function renderDpFeed() {
+  const dlg = DIALOG_PRACTICE[dpState.dialogIdx];
+  const feed = document.getElementById('dpFeed');
+  feed.innerHTML = '';
+
+  // show all lines up to current
+  dlg.lines.slice(0, dpState.lineIdx).forEach((line, i) => {
+    const bubble = document.createElement('div');
+    bubble.style.cssText = `display:flex;gap:10px;align-items:flex-start;${line.isUser ? 'flex-direction:row-reverse' : ''}`;
+    bubble.innerHTML = `
+      <div style="width:36px;height:36px;border-radius:50%;background:${line.isUser ? 'var(--green)' : 'var(--blue)'};display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:0.9rem;flex-shrink:0">
+        ${line.isUser ? 'Б' : 'А'}
+      </div>
+      <div style="max-width:75%;background:${line.isUser ? 'var(--green-light)' : 'white'};border-radius:${line.isUser ? '12px 2px 12px 12px' : '2px 12px 12px 12px'};padding:10px 14px;box-shadow:var(--shadow)">
+        <div style="font-size:0.95rem;line-height:1.5">${line.text}</div>
+        ${line.isUser ? `<div style="font-size:0.75rem;color:var(--green);margin-top:3px">✅ твоя реплика</div>` : ''}
+      </div>
+    `;
+    feed.appendChild(bubble);
+  });
+
+  // current line: if it's A's turn — show bubble + advance
+  const current = dlg.lines[dpState.lineIdx];
+  if (!current) { showDpFinish(); return; }
+
+  if (!current.isUser) {
+    // show A's line and auto-advance to next
+    const bubble = document.createElement('div');
+    bubble.style.cssText = 'display:flex;gap:10px;align-items:flex-start;';
+    bubble.innerHTML = `
+      <div style="width:36px;height:36px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:0.9rem;flex-shrink:0">А</div>
+      <div style="max-width:75%;background:white;border-radius:2px 12px 12px 12px;padding:10px 14px;box-shadow:var(--shadow)">
+        <div style="font-size:0.95rem;line-height:1.5">${current.text}</div>
+        <button class="btn btn-sm btn-primary" style="margin-top:10px" onclick="dpAdvance()">Моя очередь →</button>
+      </div>
+    `;
+    feed.appendChild(bubble);
+    document.getElementById('dpTurnCard').style.display = 'none';
+  } else {
+    showDpTurn(current);
+  }
+
+  // scroll to bottom
+  setTimeout(() => feed.scrollIntoView({ behavior: 'smooth', block: 'end' }), 100);
+}
+
+function dpAdvance() {
+  dpState.lineIdx++;
+  renderDpFeed();
+}
+
+function showDpTurn(line) {
+  const card = document.getElementById('dpTurnCard');
+  card.style.display = 'block';
+  document.getElementById('dpHintBox').innerHTML =
+    `<strong>💡 Подсказка:</strong> ${line.hint}`;
+  document.getElementById('dpLineResult').style.display = 'none';
+  document.getElementById('dpHeardWrap').style.display = 'none';
+  document.getElementById('dpAnswerReveal').style.display = 'none';
+  document.getElementById('dpAnswerText').textContent = line.text;
+  document.getElementById('dpAnswerComment').textContent = line.comment;
+  const btn = document.getElementById('dpMicBtn');
+  btn.textContent = '🎙 Говорить';
+  btn.style.background = '';
+  btn.style.animation = '';
+  document.getElementById('dpMicStatus').textContent = '';
+  setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 150);
+}
+
+function toggleDpRecording() {
+  if (dpRecording) stopDpRecording();
+  else startDpRecording();
+}
+
+function startDpRecording() {
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SR) {
+    document.getElementById('dpMicStatus').textContent = '❌ Используй Chrome';
+    return;
+  }
+  dpRecognition = new SR();
+  dpRecognition.lang = 'it-IT';
+  dpRecognition.continuous = false;
+  dpRecognition.interimResults = true;
+  let finalText = '';
+
+  dpRecognition.onresult = e => {
+    finalText = '';
+    let interim = '';
+    for (let i = 0; i < e.results.length; i++) {
+      if (e.results[i].isFinal) finalText += e.results[i][0].transcript;
+      else interim += e.results[i][0].transcript;
+    }
+    document.getElementById('dpMicStatus').textContent = '🔴 ' + (finalText || interim);
+  };
+
+  dpRecognition.onend = () => {
+    dpRecording = false;
+    const btn = document.getElementById('dpMicBtn');
+    btn.textContent = '🎙 Ещё раз';
+    btn.style.background = '';
+    btn.style.animation = '';
+    if (finalText.trim()) checkDpAnswer(finalText.trim());
+    else document.getElementById('dpMicStatus').textContent = 'Ничего не услышала — попробуй ещё раз';
+  };
+
+  dpRecognition.onerror = e => {
+    dpRecording = false;
+    document.getElementById('dpMicStatus').textContent =
+      e.error === 'not-allowed' ? '❌ Разреши микрофон в браузере' : '❌ ' + e.error;
+    const btn = document.getElementById('dpMicBtn');
+    btn.textContent = '🎙 Говорить';
+    btn.style.background = '';
+    btn.style.animation = '';
+  };
+
+  dpRecording = true;
+  dpRecognition.start();
+  const btn = document.getElementById('dpMicBtn');
+  btn.textContent = '⏹ Слушаю…';
+  btn.style.background = '#C0392B';
+  btn.style.animation = 'pulse 1.2s infinite';
+  document.getElementById('dpMicStatus').textContent = '🔴 Говори свою реплику…';
+  document.getElementById('dpLineResult').style.display = 'none';
+  document.getElementById('dpHeardWrap').style.display = 'none';
+  document.getElementById('dpAnswerReveal').style.display = 'none';
+}
+
+function stopDpRecording() {
+  dpRecording = false;
+  if (dpRecognition) { try { dpRecognition.stop(); } catch(e){} dpRecognition = null; }
+  const btn = document.getElementById('dpMicBtn');
+  if (btn) { btn.textContent = '🎙 Говорить'; btn.style.background = ''; btn.style.animation = ''; }
+}
+
+function checkDpAnswer(heard) {
+  const dlg = DIALOG_PRACTICE[dpState.dialogIdx];
+  const line = dlg.lines[dpState.lineIdx];
+
+  document.getElementById('dpHeardWrap').style.display = 'block';
+  document.getElementById('dpHeard').textContent = heard;
+
+  const norm = t => t.toLowerCase()
+    .replace(/[àá]/g,'a').replace(/[èé]/g,'e').replace(/[ìí]/g,'i')
+    .replace(/[òó]/g,'o').replace(/[ùú]/g,'u')
+    .replace(/[^a-z\s]/g,'').trim();
+
+  const heardN = norm(heard);
+  const matched = line.keys.filter(k => heardN.includes(norm(k)));
+  const isOk = matched.length >= Math.max(1, Math.ceil(line.keys.length * 0.4));
+
+  const resultEl = document.getElementById('dpLineResult');
+  resultEl.style.display = 'block';
+
+  if (isOk) {
+    dpState.score++;
+    resultEl.style.background = 'var(--green-light)';
+    resultEl.style.border = '2px solid var(--green)';
+    resultEl.innerHTML = `
+      <div style="font-size:1.8rem">✅</div>
+      <div style="font-weight:700;color:var(--green);margin-top:4px">Отлично! Ключевые слова услышаны.</div>
+      <div style="color:var(--gray);font-size:0.82rem;margin-top:4px">Уловила: <em>${matched.map(k=>'«'+k+'»').join(', ')}</em></div>
+      <button class="btn btn-primary" style="margin-top:12px" onclick="dpNext()">Дальше →</button>
+    `;
+  } else {
+    dpState.mistakes++;
+    resultEl.style.background = '#FDEDEC';
+    resultEl.style.border = '2px solid var(--red)';
+    resultEl.innerHTML = `
+      <div style="font-size:1.8rem">🔄</div>
+      <div style="font-weight:700;color:var(--red);margin-top:4px">Не хватает ключевых выражений</div>
+      <div style="color:var(--gray);font-size:0.82rem;margin-top:4px">Нужно употребить хотя бы: <em>${line.keys.slice(0,3).map(k=>'«'+k+'»').join(', ')}</em></div>
+      <div style="margin-top:10px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+        <button class="btn btn-secondary btn-sm" onclick="dpRetry()">🔄 Ещё раз</button>
+        <button class="btn btn-secondary btn-sm" onclick="dpShowAnswer()">👁 Показать фразу</button>
+        <button class="btn btn-primary btn-sm" onclick="dpNext()">Пропустить →</button>
+      </div>
+    `;
+  }
+
+  document.getElementById('dpScore').textContent = dpState.score;
+  document.getElementById('dpMistakes').textContent = dpState.mistakes;
+  updateDpProgress();
+}
+
+function dpNext() {
+  stopDpRecording();
+  dpState.lineIdx++;
+  renderDpFeed();
+  document.getElementById('dpTurnCard').style.display = 'none';
+}
+
+function dpRetry() {
+  document.getElementById('dpLineResult').style.display = 'none';
+  document.getElementById('dpHeardWrap').style.display = 'none';
+  document.getElementById('dpAnswerReveal').style.display = 'none';
+  const btn = document.getElementById('dpMicBtn');
+  btn.textContent = '🎙 Говорить';
+  btn.style.background = '';
+  btn.style.animation = '';
+  document.getElementById('dpMicStatus').textContent = '';
+}
+
+function dpShowAnswer() {
+  document.getElementById('dpAnswerReveal').style.display = 'block';
+}
+
+function showDpFinish() {
+  document.getElementById('dpTurnCard').style.display = 'none';
+  const finish = document.getElementById('dpFinish');
+  finish.style.display = 'block';
+  const total = dpState.score + dpState.mistakes;
+  document.getElementById('dpFinishStats').textContent =
+    `Правильно: ${dpState.score} из ${total} реплик`;
+  finish.scrollIntoView({ behavior: 'smooth' });
+}
+
+function updateDpProgress() {
+  const dlg = DIALOG_PRACTICE[dpState.dialogIdx];
+  const userLines = dlg.lines.filter(l => l.isUser).length;
+  const done = Math.min(dpState.score + dpState.mistakes, userLines);
+  document.getElementById('dpProgress').style.width = (done / userLines * 100) + '%';
+}
+
+// ===================== INIT =====================
+loadState();
+
+if (!state.startDate) {
+  // show onboarding
+  document.getElementById('screen-onboard').classList.add('active');
+} else {
+  document.getElementById('screen-onboard').classList.remove('active');
+  showScreen('home');
+}
+</script>
+</body>
+</html>
