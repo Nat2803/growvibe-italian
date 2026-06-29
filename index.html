@@ -168,6 +168,15 @@
   .badge-green { background: var(--green-light); color: var(--green); }
   .badge-blue { background: var(--blue-light); color: var(--blue); }
 
+  /* SPEED BUTTONS */
+  .speed-btn { padding:5px 12px;border:2px solid #DDD;border-radius:20px;background:white;cursor:pointer;font-size:0.8rem;font-weight:600;color:var(--gray);transition:all .2s; }
+  .speed-btn.active { border-color:var(--green);background:var(--green-light);color:var(--green); }
+
+  /* PLAY LINE BUTTON */
+  .play-line-btn { background:none;border:none;cursor:pointer;font-size:1rem;padding:2px 6px;border-radius:6px;transition:background .15s;flex-shrink:0; }
+  .play-line-btn:hover { background:var(--green-light); }
+  .play-line-btn.playing { animation:pulse 1s infinite; }
+
   @keyframes pulse {
     0%, 100% { box-shadow: 0 0 0 0 rgba(192,57,43,0.5); }
     50% { box-shadow: 0 0 0 10px rgba(192,57,43,0); }
@@ -369,11 +378,23 @@
 
   <div class="card">
     <div style="font-size:0.85rem;font-style:italic;color:var(--gray);margin-bottom:12px">
-      💡 Сначала читай итальянский без перевода, потом открой перевод для проверки.
+      💡 Сначала слушай без текста, потом читай итальянский, перевод — только для проверки.
     </div>
+
+    <!-- AUDIO CONTROLS -->
+    <div style="background:var(--gray-light);border-radius:10px;padding:14px 16px;margin-bottom:14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      <button class="btn btn-primary btn-sm" onclick="playDialogAll()" id="btnPlayAll">▶ Слушать весь диалог</button>
+      <button class="btn btn-secondary btn-sm" onclick="stopTTS()" id="btnStop" style="display:none">⏹ Стоп</button>
+      <div style="display:flex;align-items:center;gap:8px;margin-left:auto">
+        <span style="font-size:0.82rem;color:var(--gray);font-weight:600">Скорость:</span>
+        <button class="speed-btn active" id="spd-normal" onclick="setSpeed(1.0,'normal')">Нормально</button>
+        <button class="speed-btn" id="spd-slow" onclick="setSpeed(0.65,'slow')">Медленнее</button>
+      </div>
+    </div>
+
     <div class="toggle-row">
       <button class="btn btn-sm btn-outline" id="btnToggleTr" onclick="toggleTranslation()">Показать перевод</button>
-      <button class="btn btn-sm btn-secondary" onclick="toggleTranscript()">Скрыть диалог</button>
+      <button class="btn btn-sm btn-secondary" id="btnToggleScript" onclick="toggleTranscript()">Скрыть текст</button>
     </div>
     <div id="dialogContainer"></div>
   </div>
@@ -1395,15 +1416,21 @@ function renderListening() {
   document.getElementById('btnToggleTr').textContent = trVisible ? 'Скрыть перевод' : 'Показать перевод';
 
   document.getElementById('dialogContainer').innerHTML = dialogVisible ? `
-    <table class="dialog-table">
-      ${dialog.lines.map(line => `
-        <tr>
+    <table class="dialog-table" style="margin-top:12px">
+      ${dialog.lines.map((line, i) => `
+        <tr id="dline_${i}">
+          <td style="width:36px;padding:10px 4px">
+            <button class="play-line-btn" onclick="playLine('${line.it.replace(/'/g,"\\'")}',${i})" title="Прослушать">🔊</button>
+          </td>
           <td>${line.it}</td>
           <td class="translation" style="${trVisible ? '' : 'display:none'}">${line.ru}</td>
         </tr>
       `).join('')}
     </table>
-  ` : '<div style="padding:16px;text-align:center;color:var(--gray);font-style:italic">Диалог скрыт. Нажми «Показать диалог» чтобы прочитать.</div>';
+  ` : `<div style="padding:16px;text-align:center;color:var(--gray);font-style:italic">
+    Текст скрыт — слушай диалог на слух 👆
+    <br><br><button class="btn btn-sm btn-outline" onclick="toggleTranscript()">Показать текст</button>
+  </div>`;
 
   // questions
   document.getElementById('listenQuestions').innerHTML = dialog.questions.map((q, i) => `
@@ -1458,7 +1485,8 @@ function toggleTranslation() {
 }
 function toggleTranscript() {
   state.listenDialogVisible = !state.listenDialogVisible;
-  document.querySelector('#screen-listening .toggle-row button:last-child').textContent = state.listenDialogVisible ? 'Скрыть диалог' : 'Показать диалог';
+  const btn = document.getElementById('btnToggleScript');
+  if (btn) btn.textContent = state.listenDialogVisible ? 'Скрыть текст' : 'Показать текст';
   renderListening();
 }
 
@@ -1502,6 +1530,105 @@ async function checkListening() {
   } catch (e) {
     resultEl.innerHTML = `<div class="card"><div class="card-title">Ошибка API: ${e.message}</div>${dialog.questions.map((q, i) => `<div class="ai-section"><strong>${i+1}.</strong> ${q.answer}</div>`).join('')}</div>`;
   }
+}
+
+// ===================== TTS (TEXT-TO-SPEECH) =====================
+let ttsSpeed = 1.0;
+let ttsCurrentLine = -1;
+let ttsPlaying = false;
+
+function setSpeed(rate, id) {
+  ttsSpeed = rate;
+  document.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('spd-' + id).classList.add('active');
+  if (ttsPlaying) { stopTTS(); }
+}
+
+function stopTTS() {
+  window.speechSynthesis.cancel();
+  ttsPlaying = false;
+  ttsCurrentLine = -1;
+  document.querySelectorAll('.play-line-btn').forEach(b => { b.textContent = '🔊'; b.classList.remove('playing'); });
+  const stopBtn = document.getElementById('btnStop');
+  if (stopBtn) stopBtn.style.display = 'none';
+  const playBtn = document.getElementById('btnPlayAll');
+  if (playBtn) { playBtn.textContent = '▶ Слушать весь диалог'; playBtn.disabled = false; }
+}
+
+function getItalianVoice() {
+  const voices = window.speechSynthesis.getVoices();
+  return voices.find(v => v.lang.startsWith('it')) || voices.find(v => v.lang.startsWith('it-IT')) || null;
+}
+
+function speakText(text, rate, onEnd) {
+  window.speechSynthesis.cancel();
+  const utt = new SpeechSynthesisUtterance(text);
+  utt.lang = 'it-IT';
+  utt.rate = rate;
+  utt.pitch = 1;
+  const voice = getItalianVoice();
+  if (voice) utt.voice = voice;
+  utt.onend = onEnd || null;
+  utt.onerror = onEnd || null;
+  window.speechSynthesis.speak(utt);
+}
+
+function playLine(text, idx) {
+  stopTTS();
+  ttsCurrentLine = idx;
+  ttsPlaying = true;
+  const btn = document.querySelector(`#dline_${idx} .play-line-btn`);
+  if (btn) { btn.textContent = '⏸'; btn.classList.add('playing'); }
+  // highlight row
+  document.querySelectorAll('.dialog-table tr').forEach((r,i) => r.style.background = i === idx ? 'var(--green-light)' : '');
+  speakText(text, ttsSpeed, () => {
+    if (btn) { btn.textContent = '🔊'; btn.classList.remove('playing'); }
+    document.querySelectorAll('.dialog-table tr').forEach(r => r.style.background = '');
+    ttsPlaying = false;
+    ttsCurrentLine = -1;
+  });
+}
+
+function playDialogAll() {
+  const dialog = DIALOGS[state.listenIdx];
+  if (!dialog) return;
+  stopTTS();
+  ttsPlaying = true;
+  document.getElementById('btnStop').style.display = 'inline-flex';
+  document.getElementById('btnPlayAll').textContent = '▶ Воспроизводится…';
+  document.getElementById('btnPlayAll').disabled = true;
+
+  let i = 0;
+  function playNext() {
+    if (!ttsPlaying || i >= dialog.lines.length) { stopTTS(); return; }
+    const line = dialog.lines[i];
+    ttsCurrentLine = i;
+    // highlight
+    document.querySelectorAll('.dialog-table tr').forEach((r, ri) => r.style.background = ri === i ? 'var(--green-light)' : '');
+    const btn = document.querySelector(`#dline_${i} .play-line-btn`);
+    if (btn) { btn.textContent = '⏸'; btn.classList.add('playing'); }
+    // strip speaker name (e.g. "Marco: ")
+    const text = line.it.replace(/^[^:]+:\s*/, '');
+    speakText(text, ttsSpeed, () => {
+      if (btn) { btn.textContent = '🔊'; btn.classList.remove('playing'); }
+      i++;
+      // pause between lines
+      setTimeout(playNext, 600);
+    });
+  }
+  playNext();
+}
+
+// Also add TTS to dialog practice — play partner line
+function dpSpeak(text) {
+  stopTTS();
+  const clean = text.replace(/^[^:]+:\s*/, '');
+  speakText(clean, ttsSpeed, null);
+}
+
+// Load voices (Chrome loads async)
+if (window.speechSynthesis) {
+  window.speechSynthesis.onvoiceschanged = function() { window.speechSynthesis.getVoices(); };
 }
 
 // ===================== PRACTICE MODULE =====================
@@ -1959,7 +2086,10 @@ function renderDpFeed() {
       <div style="width:36px;height:36px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:0.9rem;flex-shrink:0">А</div>
       <div style="max-width:75%;background:white;border-radius:2px 12px 12px 12px;padding:10px 14px;box-shadow:var(--shadow)">
         <div style="font-size:0.95rem;line-height:1.5">${current.text}</div>
-        <button class="btn btn-sm btn-primary" style="margin-top:10px" onclick="dpAdvance()">Моя очередь →</button>
+        <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+          <button class="btn btn-sm btn-secondary" onclick="dpSpeak('${current.text.replace(/'/g,"\\'")}')">🔊 Прослушать</button>
+          <button class="btn btn-sm btn-primary" onclick="dpAdvance()">Моя очередь →</button>
+        </div>
       </div>
     `;
     feed.appendChild(bubble);
