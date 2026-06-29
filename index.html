@@ -800,7 +800,185 @@ const GRAMMAR = {
 
 const DIALOGS = [
   {
-    title: "Два коллеги в баре (A2–B1)",
+    title: "Разговор в кафе (A1–A2)",
+    level: "A1–A2",
+    videoId: "CYKAd1eA8Ls",
+    channel: "Italiano per tutti",
+    topic: "Утренний кофе, планы на день, бытовые фразы",
+    lines: [
+      { it: "— Buongiorno! Cosa prende?", ru: "— Доброе утро! Что будете брать?" },
+      { it: "— Un caffè macchiato, per favore. Anzi, aspetti… un cappuccino.", ru: "— Маккьято, пожалуйста. Нет, подождите… капучино." },
+      { it: "— Certo. Vuole anche qualcosa da mangiare?", ru: "— Конечно. Хотите что-нибудь поесть?" },
+      { it: "— Sì, dai, un cornetto alla crema. Quanto viene?", ru: "— Да, давай, круассан с кремом. Сколько стоит?" },
+      { it: "— Due euro e cinquanta in tutto.", ru: "— Два пятьдесят всего." },
+      { it: "— Ecco a lei. Tenga pure il resto.", ru: "— Вот, держите. Сдачу оставьте себе." },
+      { it: "— Grazie mille! Buona giornata!", ru: "— Большое спасибо! Хорошего дня!" },
+    ],
+    questions: [
+      { q: "Cosa ordina il cliente alla fine? — Что клиент заказывает в итоге?", answer: "Капучино и круассан с кремом." },
+      { q: "Quanto costa tutto? — Сколько стоит всё?", answer: "Два евро пятьдесят." },
+      { q: "Cosa fa il cliente con il resto? — Что клиент делает со сдачей?", answer: "Оставляет бариста." },
+    ],
+    expressions: [
+      { expr: "Anzi, aspetti…", tr: "Нет, подождите…", note: "Anzi — поправка к сказанному" },
+      { expr: "Sì, dai", tr: "Да, давай / ну хорошо", note: "Легкое согласие" },
+      { expr: "Quanto viene?", tr: "Сколько стоит?", note: "Разговорный вариант «quanto costa»" },
+      { expr: "Tenga pure il resto", tr: "Сдачу оставьте себе", note: "Чаевые — устойчивая фраза" },
+      { expr: "Buona giornata!", tr: "Хорошего дня!", note: "Прощание в магазинах и кафе" },
+    ],
+  },
+  {
+    title: "Знакомство и small talk (A1–A2)",
+    level: "A1–A2",
+    videoId: "Df6jr4a6khg",
+    channel: "Learn Italian with Lucrezia",
+    topic: "Знакомство, профессия, откуда ты, как дела",
+    lines: [
+      { it: "— Ciao! Sei nuova qui, vero? Io sono Martina.", ru: "— Привет! Ты здесь новенькая, да? Я Мартина." },
+      { it: "— Sì, sono arrivata la settimana scorsa. Mi chiamo Anya, piacere.", ru: "— Да, приехала на прошлой неделе. Меня зовут Аня, приятно познакомиться." },
+      { it: "— Di dove sei?", ru: "— Откуда ты?" },
+      { it: "— Sono russa, di Mosca. E tu sei di qui?", ru: "— Я русская, из Москвы. А ты отсюда?" },
+      { it: "— Sì, sono di Milano. Cosa fai qui a Roma?", ru: "— Да, я из Милана. Что ты здесь делаешь в Риме?" },
+      { it: "— Studio italiano all'università. È una lingua bellissima!", ru: "— Изучаю итальянский в университете. Это очень красивый язык!" },
+      { it: "— Hai ragione! E parli già bene, complimenti!", ru: "— Ты права! И уже хорошо говоришь, поздравляю!" },
+      { it: "— Grazie, sei gentile. Ancora tanto da imparare, però!", ru: "— Спасибо, ты добрая. Ещё многому предстоит учиться, но!" },
+    ],
+    questions: [
+      { q: "Da dove viene Anya? — Откуда Аня?", answer: "Из Москвы, она русская." },
+      { q: "Perché è a Roma? — Почему она в Риме?", answer: "Изучает итальянский в университете." },
+      { q: "Come risponde Anya al complimento? — Как Аня реагирует на комплимент?", answer: "Благодарит и говорит что ещё многому учиться." },
+    ],
+    expressions: [
+      { expr: "Sei nuova qui, vero?", tr: "Ты здесь новенькая, да?", note: "Типичный способ начать разговор" },
+      { expr: "Di dove sei?", tr: "Откуда ты?", note: "Базовый вопрос знакомства" },
+      { expr: "Cosa fai qui?", tr: "Что ты тут делаешь?", note: "Спросить о цели визита/жизни" },
+      { expr: "Hai ragione!", tr: "Ты права/прав!", note: "Частое согласие" },
+      { expr: "Sei gentile", tr: "Ты добрая", note: "Ответ на комплимент" },
+      { expr: "Ancora tanto da imparare", tr: "Ещё многому учиться", note: "Скромный ответ на похвалу" },
+    ],
+  },
+  {
+    title: "У врача (A2–B1)",
+    level: "A2–B1",
+    videoId: "N33PCH9KOTg",
+    channel: "ItalianPod101",
+    topic: "Визит к врачу, симптомы, назначение лечения",
+    lines: [
+      { it: "— Buongiorno, si accomodi. Allora, cosa la porta da me oggi?", ru: "— Доброе утро, присаживайтесь. Итак, что привело вас ко мне сегодня?" },
+      { it: "— Ho mal di testa fortissimo da tre giorni e la febbre. Mi sento uno schifo.", ru: "— У меня сильная головная боль уже три дня и температура. Чувствую себя ужасно." },
+      { it: "— Capisco. Ha anche il naso che cola o il mal di gola?", ru: "— Понимаю. У вас ещё насморк или боль в горле?" },
+      { it: "— Sì, un po' di tutto. E poi tossisco parecchio di notte.", ru: "— Да, всего понемногу. И ещё сильно кашляю ночью." },
+      { it: "— Vediamo… Apra la bocca. Dica «aaah». Mhm, la gola è un po' infiammata.", ru: "— Посмотрим… Откройте рот. Скажите «ааа». Мхм, горло немного воспалено." },
+      { it: "— È grave, dottore?", ru: "— Это серьёзно, доктор?" },
+      { it: "— No, niente di grave. Un'influenza stagionale. Le prescrivo un antibiotico e uno sciroppo per la tosse.", ru: "— Нет, ничего серьёзного. Сезонный грипп. Выпишу антибиотик и сироп от кашля." },
+      { it: "— Quante volte devo prendere le medicine?", ru: "— Сколько раз нужно принимать лекарства?" },
+      { it: "— L'antibiotico due volte al giorno, mattina e sera, per sei giorni. E riposo, mi raccomando!", ru: "— Антибиотик два раза в день, утром и вечером, шесть дней. И покой, обязательно!" },
+    ],
+    questions: [
+      { q: "Quali sintomi ha il paziente? — Какие симптомы у пациента?", answer: "Сильная головная боль, температура, насморк, боль в горле, кашель." },
+      { q: "Qual è la diagnosi? — Какой диагноз?", answer: "Сезонный грипп." },
+      { q: "Come deve prendere l'antibiotico? — Как нужно принимать антибиотик?", answer: "Два раза в день, утром и вечером, шесть дней." },
+    ],
+    expressions: [
+      { expr: "Si accomodi", tr: "Присаживайтесь", note: "Вежливая форма — dottore, banchiere" },
+      { expr: "Mi sento uno schifo", tr: "Чувствую себя ужасно", note: "Разговорно, очень живое" },
+      { expr: "Un po' di tutto", tr: "Всего понемногу", note: "Универсальный ответ" },
+      { expr: "Niente di grave", tr: "Ничего серьёзного", note: "Успокаивающая фраза" },
+      { expr: "Mi raccomando!", tr: "Обязательно! / Смотри же!", note: "Настойчивая просьба или предупреждение" },
+    ],
+  },
+  {
+    title: "Планируем поездку (A2–B1)",
+    level: "A2–B1",
+    videoId: "1TtpqBnHLR0",
+    channel: "Italiano con Paola",
+    topic: "Выбор направления, бюджет, планы на отпуск",
+    lines: [
+      { it: "— Allora, hai già deciso dove andiamo quest'estate?", ru: "— Ну что, ты уже решила куда едем этим летом?" },
+      { it: "— Mah, pensavo alla Sicilia. Però è cara in agosto, no?", ru: "— Ну, думала о Сицилии. Но в августе дорого, нет?" },
+      { it: "— Dipende. Se prenotiamo subito forse troviamo qualcosa di ragionevole.", ru: "— Зависит. Если забронируем сейчас, может найдём что-то по-разумному." },
+      { it: "— Sì, dai. E quanto pensi di spendere in tutto?", ru: "— Да, давай. А сколько думаешь потратить всего?" },
+      { it: "— Boh, diciamo intorno ai mille euro a testa, voli inclusi.", ru: "— Хз, скажем около тысячи евро на человека, с перелётами." },
+      { it: "— Ok, ci sta. Però preferirei evitare agosto, troppa gente.", ru: "— Окей, нормально. Но я бы предпочла избежать августа — слишком много народу." },
+      { it: "— Hai ragione. Fine luglio allora? È quasi uguale ma meno caotico.", ru: "— Ты права. Конец июля тогда? Почти то же самое, но менее хаотично." },
+      { it: "— Perfetto! Cerchiamo i voli stasera?", ru: "— Отлично! Поищем рейсы сегодня вечером?" },
+    ],
+    questions: [
+      { q: "Dove pensano di andare? — Куда они думают поехать?", answer: "В Сицилию." },
+      { q: "Qual è il budget? — Какой бюджет?", answer: "Около тысячи евро на человека, включая перелёты." },
+      { q: "Perché evitano agosto? — Почему избегают августа?", answer: "Слишком много народу." },
+    ],
+    expressions: [
+      { expr: "Ci sta", tr: "Подходит / нормально / окей", note: "Буквально «там есть место» — очень живое" },
+      { expr: "Intorno ai…", tr: "Около… / примерно…", note: "Приблизительная цифра" },
+      { expr: "Dipende", tr: "Зависит", note: "Универсальный ответ на вопрос" },
+      { expr: "Hai ragione", tr: "Ты права/прав", note: "Частое согласие в разговоре" },
+      { expr: "Fine luglio", tr: "Конец июля", note: "Fine = конец (периода)" },
+    ],
+  },
+  {
+    title: "В ресторане (A1–A2)",
+    level: "A1–A2",
+    videoId: "ldnUtEkkFuQ",
+    channel: "Learn Italian with Lucrezia",
+    topic: "Заказ еды, меню, счёт",
+    lines: [
+      { it: "— Buonasera! Avete prenotato?", ru: "— Добрый вечер! У вас есть бронь?" },
+      { it: "— Sì, a nome Rossi. Per due persone.", ru: "— Да, на имя Росси. На двоих." },
+      { it: "— Benissimo, prego, accomodatevi. Ecco il menù.", ru: "— Отлично, пожалуйста, проходите. Вот меню." },
+      { it: "— Grazie. Senta, cosa ci consiglia oggi?", ru: "— Спасибо. Послушайте, что вы нам порекомендуете сегодня?" },
+      { it: "— Oggi abbiamo un'ottima pasta al tartufo e il branzino è freschissimo.", ru: "— Сегодня у нас отличная паста с трюфелем и очень свежий лаврак." },
+      { it: "— Mmm, allora prendo la pasta. E tu, amore?", ru: "— Мм, тогда возьму пасту. А ты, дорогой/ая?" },
+      { it: "— Per me il branzino, grazie. E una bottiglia di acqua naturale.", ru: "— Мне лаврак, спасибо. И бутылку негазированной воды." },
+      { it: "— Perfetto. E da bere qualcos'altro?", ru: "— Отлично. Что-нибудь ещё из напитков?" },
+      { it: "— Sì, mezzo litro di vino bianco della casa.", ru: "— Да, полбутылки белого вина от шеф-повара." },
+      { it: "— Ottima scelta! Porto subito il pane.", ru: "— Отличный выбор! Сейчас принесу хлеб." },
+    ],
+    questions: [
+      { q: "Cosa prende lei? — Что заказывает она?", answer: "Пасту с трюфелем." },
+      { q: "Cosa prende lui? — Что заказывает он?", answer: "Лаврака и негазированную воду." },
+      { q: "Cosa ordinano da bere oltre all'acqua? — Что из напитков кроме воды?", answer: "Полбутылки белого вина от шефа." },
+    ],
+    expressions: [
+      { expr: "A nome di…", tr: "На имя…", note: "Бронирование столика или отеля" },
+      { expr: "Cosa ci consiglia?", tr: "Что вы нам порекомендуете?", note: "Буквально «что советуете нам?»" },
+      { expr: "Prendo…", tr: "Возьму / закажу…", note: "Разговорный заказ в ресторане" },
+      { expr: "Della casa", tr: "От шефа / домашнее", note: "Вино della casa = самое дешёвое от заведения" },
+      { expr: "Porto subito", tr: "Сейчас принесу", note: "Ответ официанта" },
+    ],
+  },
+  {
+    title: "Разговор о работе и планах (B1)",
+    level: "B1",
+    videoId: "dY8q_WwmPkU",
+    channel: "ItalianPod101",
+    topic: "Работа, карьера, планы на будущее, эмоции",
+    lines: [
+      { it: "— Senti, ho una notizia. Ho avuto un colloquio la settimana scorsa e… mi hanno offerto il lavoro!", ru: "— Слушай, у меня новость. На прошлой неделе было собеседование и… мне предложили работу!" },
+      { it: "— Davvero?! Che figata! Di che si tratta?", ru: "— Серьёзно?! Это круто! А что за работа?" },
+      { it: "— Sono marketing manager in una startup tech. Stipendio buono e smart working due giorni a settimana.", ru: "— Менеджер по маркетингу в технологическом стартапе. Хорошая зарплата и удалёнка два дня в неделю." },
+      { it: "— Oddio, sembra perfetto! E hai già accettato?", ru: "— Боже, звучит идеально! И ты уже согласилась?" },
+      { it: "— Non ancora. Ci sto ancora pensando. Il problema è che devo trasferirmi a Milano.", ru: "— Ещё нет. Ещё думаю. Проблема в том, что надо переехать в Милан." },
+      { it: "— Mah, Milano non è male. Però capisco, lasciare Roma non è facile.", ru: "— Ну, Милан не плохо. Но понимаю, бросить Рим непросто." },
+      { it: "— Appunto. E poi ho qui tutti i miei amici, la famiglia…", ru: "— Вот именно. И потом, здесь все мои друзья, семья…" },
+      { it: "— Però un'opportunità così capita una volta ogni tanto. Ci penserei su seriamente.", ru: "— Но такая возможность выпадает раз в жизни. Я бы серьёзно подумала." },
+      { it: "— Lo so, lo so. Comunque devo decidere entro venerdì.", ru: "— Знаю, знаю. В любом случае надо решить до пятницы." },
+    ],
+    questions: [
+      { q: "Che lavoro le hanno offerto? — Какую работу ей предложили?", answer: "Менеджер по маркетингу в технологическом стартапе." },
+      { q: "Qual è il problema principale? — В чём главная проблема?", answer: "Нужно переехать в Милан." },
+      { q: "Quando deve decidere? — Когда нужно решить?", answer: "До пятницы." },
+    ],
+    expressions: [
+      { expr: "Che figata!", tr: "Это круто!", note: "Восторженная реакция" },
+      { expr: "Di che si tratta?", tr: "А что за…? / В чём дело?", note: "Спросить подробности" },
+      { expr: "Ci sto pensando", tr: "Ещё думаю об этом", note: "Ci = «об этом» (ci pensare)" },
+      { expr: "Capita una volta ogni tanto", tr: "Такое бывает раз в жизни", note: "Аргумент в пользу решения" },
+      { expr: "Ci penserei su", tr: "Я бы подумала", note: "Condizionale — совет деликатно" },
+      { expr: "Entro venerdì", tr: "До пятницы", note: "Entro = до (крайний срок)" },
+    ],
+  },
+];
     level: "A2–B1",
     lines: [
       { it: "Marco: Ciao Luca! Dai, che fai qui così presto?", ru: "Марко: Привет, Лука! Ничего себе, что так рано тут?" },
@@ -1410,27 +1588,54 @@ function renderListening() {
   const dialog = DIALOGS[state.listenIdx];
   document.getElementById('listenCounter').textContent = `Диалог ${state.listenIdx + 1} / ${DIALOGS.length}`;
 
-  // dialog table
   const trVisible = state.listenTrVisible;
   const dialogVisible = state.listenDialogVisible;
   document.getElementById('btnToggleTr').textContent = trVisible ? 'Скрыть перевод' : 'Показать перевод';
+  const scriptBtn = document.getElementById('btnToggleScript');
+  if (scriptBtn) scriptBtn.textContent = dialogVisible ? 'Скрыть текст' : 'Показать текст';
 
-  document.getElementById('dialogContainer').innerHTML = dialogVisible ? `
-    <table class="dialog-table" style="margin-top:12px">
-      ${dialog.lines.map((line, i) => `
-        <tr id="dline_${i}">
-          <td style="width:36px;padding:10px 4px">
-            <button class="play-line-btn" onclick="playLine('${line.it.replace(/'/g,"\\'")}',${i})" title="Прослушать">🔊</button>
-          </td>
-          <td>${line.it}</td>
-          <td class="translation" style="${trVisible ? '' : 'display:none'}">${line.ru}</td>
-        </tr>
-      `).join('')}
-    </table>
-  ` : `<div style="padding:16px;text-align:center;color:var(--gray);font-style:italic">
-    Текст скрыт — слушай диалог на слух 👆
-    <br><br><button class="btn btn-sm btn-outline" onclick="toggleTranscript()">Показать текст</button>
-  </div>`;
+  // YouTube embed + meta
+  document.getElementById('dialogContainer').innerHTML = `
+    <div style="margin-bottom:14px">
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px">
+        <span class="badge badge-blue">${dialog.level}</span>
+        <span style="font-size:0.82rem;color:var(--gray)">📺 ${dialog.channel}</span>
+        <span style="font-size:0.82rem;color:var(--gray)">🗣 ${dialog.topic}</span>
+      </div>
+
+      <!-- VIDEO PLAYER -->
+      <div style="position:relative;padding-bottom:56.25%;height:0;border-radius:12px;overflow:hidden;background:#000;margin-bottom:8px">
+        <iframe id="ytplayer_${state.listenIdx}"
+          src="https://www.youtube.com/embed/${dialog.videoId}?rel=0&modestbranding=1"
+          style="position:absolute;top:0;left:0;width:100%;height:100%;border:none"
+          allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+        </iframe>
+      </div>
+      <div style="font-size:0.78rem;color:var(--gray);text-align:center;margin-bottom:14px">
+        ⚙️ Скорость — нажми шестерёнку в плеере → Скорость воспроизведения (0.25× · 0.5× · 0.75× · Обычная)
+      </div>
+    </div>
+
+    <!-- TRANSCRIPT -->
+    ${dialogVisible ? `
+      <div style="background:var(--gray-light);border-radius:10px;padding:4px 0;margin-top:4px">
+        <div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:1px;color:var(--gray);font-weight:700;padding:12px 16px 4px">
+          📄 Транскрипт диалога
+        </div>
+        <table class="dialog-table" style="margin:0">
+          ${dialog.lines.map((line, i) => `
+            <tr id="dline_${i}">
+              <td>${line.it}</td>
+              <td class="translation" style="${trVisible ? '' : 'display:none'}">${line.ru}</td>
+            </tr>
+          `).join('')}
+        </table>
+      </div>
+    ` : `<div style="padding:16px;text-align:center;color:var(--gray);font-style:italic">
+      Транскрипт скрыт — смотри видео на слух<br><br>
+      <button class="btn btn-sm btn-outline" onclick="toggleTranscript()">Показать транскрипт</button>
+    </div>`}
+  `;
 
   // questions
   document.getElementById('listenQuestions').innerHTML = dialog.questions.map((q, i) => `
